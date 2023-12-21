@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RescYouAdmin" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">#B6B6B6</item>
+        <item name="colorOnPrimary">#E6E3E3</item>
+    </style>
+
+    <style name="Theme.RescYouAdmin" parent="Base.Theme.RescYouAdmin">
+        <item name="colorPrimary">#B6B6B6</item>
+        <item name="colorPrimaryVariant">#B6B6B6</item>
+        <item name="colorOnPrimary">#E6E3E3</item>
+
+    </style>
+
+    <style name="MaterialAlertDialogRounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearance">@style/DialogCorner</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="DialogCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+</resources>

@@ -1,0 +1,169 @@
+<resources>
+    <string name="app_name">rescYou Admin</string>
+
+    <!--Starting Page-->
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_email">Sign In Via Email</string>
+    <string name="sign_in_gmail">Sign In Via Gmail</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="tech_image">Tech Life Vector</string>
+    <string name="join_community">Join our community.</string>
+    <string name="thankyou_services">Thank you for using our services.</string>
+
+    <!--Sign Up Page-->
+    <!--Personal Details:REQUIRED-->
+    <string name="personal_details">Personal Details</string>
+    <string name="first_name_req">First Name <font color='#FF0000'>*</font></string>
+    <string name="middle_name_req">Middle Name</string>
+    <string name="last_name_req">Last Name <font color='#FF0000'>*</font></string>
+    <string name="suffix_name_req">Suffix</string>
+    <string name="birthday_req">Birthday <font color='#FF0000'>*</font></string>
+
+    <!--Personal Details-->
+    <string name="first_name">First Name </string>
+    <string name="middle_name">Middle Name</string>
+    <string name="last_name">Last Name </string>
+    <string name="suffix_name">Suffix</string>
+    <string name="birthday">Birthday </string>
+
+    <!--Account Details-->
+    <string name="account_details">Account Details</string>
+    <string name="bqrt_id">BQRT ID</string>
+
+
+    <!--Terms and Conditions-->
+    <string name="termsAndConditions">By signing up, you agree to our terms and conditions.</string>
+
+
+    <!--Sign In EMAIL Page-->
+    <string name="welcome">Welcome Back</string>
+
+    <!--Sign In EMAIL Page:REQUIRED-->
+    <string name="email_req">Email <font color='#FF0000'>*</font></string>
+    <string name="password_req">Password <font color='#FF0000'>*</font></string>
+    <string name="bqrt_id_req">BQRT ID<font color='#FF0000'>*</font></string>
+
+    <string name="email">Email</string>
+    <string name="password">Password </string>
+
+
+    <!--Forgot Password Page-->
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_email">Enter your email to reset your password.</string>
+    <string name="reset_password">Reset Password</string>
+
+    <!--Verify OTP Page-->
+    <string name="verify_OTP">OTP Verification</string>
+    <string name="send_OTP">We will send you an One Time Password (OTP) on this mobile number.</string>
+    <string name="country_code">+63</string>
+    <string name="mobile_num">Mobile Number</string>
+    <string name="get_OTP">Get OTP</string>
+
+    <!--Send OTP Page-->
+    <string name="entry_OTP">Enter the OTP sent to:</string>
+    <string name="OTP">One Time Password (OTP)</string>
+    <string name="didnt_getOTP">Didn\'t receive the OTP?</string>
+    <string name="resend">Resend OTP</string>
+    <string name="verify">Verify OTP</string>
+
+
+    <!--Home-->
+
+    <!--Nav Bar-->
+    <string name="home">Home</string>
+    <string name="tools">Tools</string>
+    <string name="info">Information</string>
+    <string name="reports">Reports</string>
+    <string name="profile">Profile</string>
+
+    <!--Pin my location button-->
+    <string name="pin_location">Pin My Location</string>
+    <string name="describe">Describe your current situation.</string>
+    <string name="cancel_pin">Cancel</string>
+
+    <string name="rate_situation">Rate your current situation.</string>
+    <string name="mild">Mild</string>
+    <string name="moderate">Moderate</string>
+    <string name="severe">Severe</string>
+    <string name="critical">Critical</string>
+    <string name="catastrophic">Catastrophic</string>
+
+    <string name="type_disaster">Type of Disaster</string>
+
+    <string name="sitio">Enter the Sitio you are in</string>
+
+    <string name="take_photo">Take a Photo</string>
+    <string name="add_photo">Add Photos</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+    <!--Profile-->
+    <string name="sign_out">Sign Out</string>
+
+    <!--Tools-->
+    <string name="flashlight">Flashlight</string>
+    <string name="whistle">Whistle</string>
+    <string name="compass">Compass</string>
+
+    <string name="switch_on">On</string>
+    <string name="switch_off">Off</string>
+
+    <string name="play">PLAY</string>
+    <string name="open">OPEN</string>
+
+    <!--Information-->
+    <string name="preparedness_tips">Preparedness Tips</string>
+    <string name="hotlines">Hotlines</string>
+    <string name="evacuation_centers">Evacuation Centers</string>
+
+    <string name="view">VIEW</string>
+
+    <!--Preparedness Tips-->
+
+    <string name="earthquake">Earthquake</string>
+    <string name="fire">Fire</string>
+    <string name="typhoon">Typhoon</string>
+    <string name="flood">Flood</string>
+    <string name="landslide">Landslide</string>
+    <string name="volcanic">Volcanic Eruption</string>
+
+    <string name="source">Source</string>
+    <string name="image_source">Image:</string>
+    <string name="article_source">Article:</string>
+
+
+    <!--View Pins-->
+    <string name="view_pin">View Pin</string>
+    <string name="send_help">Send Help</string>
+
+    <string name="pinned_by">Pinned by:</string>
+    <string name="pinned_by_name">Unknown</string>
+
+    <string name="send_help_name">No one is sending help yet.</string>
+
+    <string name="ratings_current_situation">Ratings of Current Situation:</string>
+    <string name="current_situation">Current Situation:</string>
+    <string name="situation">Happy</string>
+
+    <string name="your_sitio">Current Sitio:</string>
+
+
+    <!--My Pin-->
+    <string name="my_pin">My Pin</string>
+
+    <string name="resolved">Resolved</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="msg_token_fmt">hello</string>
+
+
+    <!--REPORTS-->
+    <string name="view_allpins">View All Pins </string>
+    <string name="per_sitio">Per Sitio (Total) </string>
+    <string name="per_disaster">Per disaster categories (Total) </string>
+    <string name="summary">Summary </string>
+
+</resources>
