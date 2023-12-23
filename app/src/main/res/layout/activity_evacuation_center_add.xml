@@ -128,8 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/status"
-                android:inputType="none"
-                android:text="Available" />
+                android:inputType="none"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <android.widget.Button

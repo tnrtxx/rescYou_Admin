@@ -101,12 +101,13 @@ class EvacuationCenterAdd : AppCompatActivity() {
         val inChargeInput = binding.inChargeTextInput.text.toString().trim()
         val contactNumInput = binding.inChargeContactNumTextInput.text.toString().trim()
         val occupantsInput = binding.occupantsTextInput.text.toString().trim()
+        val statusSelected = binding.statusDropdown.text.toString().trim()
 
-        if (isValidInput(nameInput, inChargeInput, contactNumInput, occupantsInput)) {
+        if (isValidInput(nameInput, inChargeInput, contactNumInput, occupantsInput, statusSelected)) {
             data = FirebaseDatabase.getInstance()
             databaseReference = data.getReference("Evacuation Centers")
             val evacuationCenterData = EvacuationCenterData(
-                name, address, latitude, longitude, "Available",
+                name, address, latitude, longitude, statusSelected,
                 inChargeInput, contactNumInput, occupantsInput
             )
             databaseReference.child(name!!).setValue(evacuationCenterData)
@@ -119,7 +120,8 @@ class EvacuationCenterAdd : AppCompatActivity() {
         nameInput: String,
         inChargeInput: String,
         contactNumInput: String,
-        occupantsInput: String
+        occupantsInput: String,
+        statusSelected: String
     ): Boolean {
         return when {
             nameInput.isEmpty() -> {
@@ -136,6 +138,10 @@ class EvacuationCenterAdd : AppCompatActivity() {
             }
             occupantsInput.isEmpty() -> {
                 showErrorAndFocus(binding.occupantsTextInput, "Occupants is required.")
+                false
+            }
+            statusSelected.isEmpty() -> {
+                showErrorAndFocus(binding.statusDropdown, "Status is required.")
                 false
             }
             else -> true
