@@ -5,4 +5,11 @@
         <item>Full</item>
         <item>Unavailable</item>
     </string-array>
+
+    <string-array name="occupants">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+    </string-array>
+
 </resources>
