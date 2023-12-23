@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="status_evacuation_center">
+        <item>Available</item>
+        <item>Full</item>
+        <item>Unavailable</item>
+    </string-array>
+</resources>

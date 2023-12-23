@@ -30,7 +30,7 @@ class Home : AppCompatActivity() {
 
         //Evacuation Centers
         binding.centersButton.setOnClickListener {
-//            val intent = Intent(this, Hotlines::class.java)
+            val intent = Intent(this, EvacuationCenters::class.java)
             startActivity(intent)
         }
 
@@ -56,6 +56,7 @@ class Home : AppCompatActivity() {
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
+
             R.id.reports -> {
 //                Toast.makeText(applicationContext, "information", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Reports::class.java)
