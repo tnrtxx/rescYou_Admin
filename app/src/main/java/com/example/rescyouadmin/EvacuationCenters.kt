@@ -35,9 +35,10 @@ class EvacuationCenters : AppCompatActivity() {
 
         //ADD EVACUATION CENTER BUTTON
         binding.fabAddEvacuationCenter.setOnClickListener {
-            val intent = Intent(this, EvacuationCenterAdd::class.java)
+            val intent = Intent(this, EvacuationCenterAddEdit::class.java)
             startActivity(intent)
         }
+
 
         //RECYCLER VIEW
         evacuationCenterRecyclerView = binding.evacuationCenterRecyclerView

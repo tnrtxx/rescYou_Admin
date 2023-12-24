@@ -1,8 +1,12 @@
 package com.example.rescyouadmin
 
+import android.content.Intent
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rescyouadmin.databinding.ItemEvacuationCentersBinding
 
@@ -38,21 +42,42 @@ class EvacuationCenterAdapter(private val evacuationCenterArrayList: List<Evacua
                 val isAvailable = item.status.equals("AVAILABLE", ignoreCase = true)
                 val isFull = item.status.equals("FULL", ignoreCase = true)
 
-                val statusBgColorResId = when {
+                val statusColor = when {
                     isAvailable -> R.color.navy_blue
-                    isFull -> R.color.slight_dark_gray
-                    else -> R.color.slight_dark_gray // Adjust to your default background color
+                    isFull -> R.color.dark_gray
+                    else -> R.color.slight_dark_gray
                 }
 
-                val statusTextColorResId = when {
-                    isAvailable -> R.color.light_gray
-                    isFull -> R.color.navy_blue
-                    else -> R.color.darker_gray // Adjust to your default text color
+                val tintList = ColorStateList.valueOf(ContextCompat.getColor(context, statusColor))
+
+                // Set compound drawable tint list using TextViewCompat
+                TextViewCompat.setCompoundDrawableTintList(statusTextview, tintList)
+
+                // EDIT EVACUATION CENTER
+                binding.editEvacuationCenterButton.setOnClickListener {
+                    val intent = Intent(context, EvacuationCenterAddEdit::class.java)
+                    intent.putExtra("nameEC", item.name)
+                    intent.putExtra("address", item.address)
+                    intent.putExtra("status", item.status)
+                    intent.putExtra("inCharge", item.inCharge)
+                    intent.putExtra("inChargeContactNum", item.inChargeContactNum)
+                    intent.putExtra("occupants", item.occupants)
+                    startActivity(context, intent, null)
                 }
 
-                statusTextview.setBackgroundColor(ContextCompat.getColor(context, statusBgColorResId))
-                statusTextview.setTextColor(ContextCompat.getColor(context, statusTextColorResId))
+
+                // DELETE EVACUATION CENTER
+                // Open a confirmation dialog before deleting the evacuation center
+
+
+
             }
+
+
         }
+
+
+
+
     }
 }

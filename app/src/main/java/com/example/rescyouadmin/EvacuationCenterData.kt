@@ -1,6 +1,7 @@
 package com.example.rescyouadmin
 
 data class EvacuationCenterData(
+    var id: String? = null,
     var name: String? = null,
     var address: String? = null,
     var latitude: String? = null,

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EvacuationCenterAdd">
+    android:background="@color/light_gray"
+    tools:context=".EvacuationCenterAddEdit">
 
     <!--HEADER-->
     <androidx.cardview.widget.CardView
@@ -67,8 +68,9 @@
                 android:background="@null"
                 android:drawableStart="@drawable/round_search_24"
                 android:drawablePadding="8dp"
+                android:editable="false"
                 android:hint="@string/search_for_a_place"
-                android:inputType="textPostalAddress" />
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -104,8 +106,7 @@
             android:id="@+id/occupantsTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-        >
+            android:layout_marginTop="18dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/occupantsTextInput"
@@ -128,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/status"
-                android:inputType="none"/>
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <android.widget.Button
