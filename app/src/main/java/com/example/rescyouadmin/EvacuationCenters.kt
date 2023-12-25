@@ -13,13 +13,21 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+
+/**
+ * Evacuation Centers (Admin)
+ * Activity for displaying and managing evacuation centers.
+ */
+
+
 private const val TAG = "EvacuationCenters"
 
 class EvacuationCenters : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEvacuationCentersBinding
+    private lateinit var binding: ActivityEvacuationCentersBinding  // ViewBinding variable
+    private lateinit var databaseReference: DatabaseReference       // Firebase-related variable
 
-    private lateinit var databaseReference: DatabaseReference
+    // RecyclerView-related variables
     private lateinit var evacuationCenterRecyclerView: RecyclerView
     private lateinit var evacuationCenterAdapter: EvacuationCenterAdapter
     private lateinit var evacuationCenterArrayList: ArrayList<EvacuationCenterData>
@@ -29,20 +37,30 @@ class EvacuationCenters : AppCompatActivity() {
         binding = ActivityEvacuationCentersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //BACK BUTTON
+        initializeUI()              // Initialize UI components
+        initializeRecyclerView()    // Initialize RecyclerView and its adapter
+        getUserData()               // Fetch and display evacuation center data
+
+    }
+
+    /*** Helper Functions ***/
+
+    private fun initializeUI() {
+
+        // Back Button: Navigate to the Home activity
         binding.backButton.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
 
-        //ADD EVACUATION CENTER BUTTON
+        // Add New Evacuation Center Button: Navigate to the EvacuationCenterAdd activity for adding a new evacuation center
         binding.fabAddEvacuationCenter.setOnClickListener {
             val intent = Intent(this, EvacuationCenterAdd::class.java)
             startActivity(intent)
         }
+    }
 
-
-        //RECYCLER VIEW
+    private fun initializeRecyclerView() {
         evacuationCenterRecyclerView = binding.evacuationCenterRecyclerView
         evacuationCenterRecyclerView.layoutManager = LinearLayoutManager(this)
         evacuationCenterRecyclerView.setHasFixedSize(true)
@@ -50,20 +68,22 @@ class EvacuationCenters : AppCompatActivity() {
         evacuationCenterArrayList = arrayListOf()
         evacuationCenterAdapter = EvacuationCenterAdapter(evacuationCenterArrayList)
         evacuationCenterRecyclerView.adapter = evacuationCenterAdapter
-
-        getUserData()
     }
 
     private fun getUserData() {
+
+        // Firebase setup
         databaseReference = FirebaseDatabase.getInstance("https://rescyou-57570-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Evacuation Centers")
         databaseReference.keepSynced(true)
 
+        // Event listener for data changes
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     evacuationCenterArrayList.clear()
                     for (evacuationCenterSnapshot in snapshot.children) {
-                        val evacuationCenter = evacuationCenterSnapshot.getValue(EvacuationCenterData::class.java)
+                        val evacuationCenter =
+                            evacuationCenterSnapshot.getValue(EvacuationCenterData::class.java)
                         evacuationCenterArrayList.add(evacuationCenter!!)
                     }
                     evacuationCenterAdapter.notifyDataSetChanged()
@@ -71,8 +91,10 @@ class EvacuationCenters : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("EvacuationCenters", "Database operation cancelled: ${error.message}")
+                // Handle database operation cancellation
+                Log.e(TAG, "Database operation cancelled: ${error.message}")
             }
         })
     }
 }
+

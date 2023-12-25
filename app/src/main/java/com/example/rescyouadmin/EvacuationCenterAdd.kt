@@ -17,12 +17,16 @@ import com.google.android.libraries.places.api.model.RectangularBounds
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+
+/**
+ * EvacuationCenterAdd
+ * This activity allows the user to add a new evacuation center to the database.
+ */
 
 private const val TAG = "EvacuationCenterAdd"
 
@@ -36,6 +40,7 @@ class EvacuationCenterAdd : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
 
     // Variable Declarations
+    private var evacuationCenterId: String? = null
     private var placeId: String? = null
     private var name: String? = null
     private var address: String? = null
@@ -48,37 +53,37 @@ class EvacuationCenterAdd : AppCompatActivity() {
         binding = ActivityEvacuationCenterAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        initializeUI()
+        initializeUI() // Initialize UI components
     }
 
     private fun initializeUI() {
-        setupBackButton()
-        setupPlacesAutocomplete()
-        setupStatusDropdown()
-
         binding.saveEvacuationCenterButton.setOnClickListener {
-            saveEvacuationCenter()
+            saveEvacuationCenter() // Save the evacuation center to the database
+        }
+
+        binding.backButton.setOnClickListener {
+            startActivity(Intent(this, EvacuationCenters::class.java)
+            ) // Navigate to the EvacuationCenters activity
         }
 
         binding.cancelEvacuationCenterButton.setOnClickListener {
-            navigateToEvacuationCenters()
+            startActivity(Intent(this, EvacuationCenters::class.java)
+            ) // Navigate to the EvacuationCenters activity
         }
+
+        setupPlacesAutocomplete() // Setup Places Autocomplete
+        setupStatusDropdown() // Setup Status Dropdown
     }
 
-    private fun setupBackButton() {
-        binding.backButton.setOnClickListener {
-            navigateToEvacuationCenters()
-        }
-    }
+    /*** Helper Functions ***/
 
     private fun setupPlacesAutocomplete() {
         Places.initialize(applicationContext, getString(R.string.api_key))
 
         binding.nameTextInput.setOnTouchListener { view, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
-                startAutocompleteActivity()
-                view.performClick()
+                startAutocompleteActivity() // Start the Places Autocomplete activity
+                view.performClick() // Perform a click to clear the focus
             }
             true
         }
@@ -105,6 +110,21 @@ class EvacuationCenterAdd : AppCompatActivity() {
         binding.statusDropdown.setAdapter(arrayAdapter)
     }
 
+    private fun isValidInput(vararg inputFields: Pair<String, EditText>): Boolean {
+        inputFields.forEach { (input, view) ->
+            if (input.isEmpty()) {
+                showErrorAndFocus(view, "Please provide a valid input")
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun showErrorAndFocus(view: EditText, errorMessage: String) {
+        view.error = errorMessage
+        view.requestFocus()
+    }
+
     private fun saveEvacuationCenter() {
         val nameInput = binding.nameTextInput.text.toString().trim()
         val inChargeInput = binding.inChargeTextInput.text.toString().trim()
@@ -112,22 +132,21 @@ class EvacuationCenterAdd : AppCompatActivity() {
         val occupantsInput = binding.occupantsTextInput.text.toString().trim()
         val statusSelected = binding.statusDropdown.text.toString().trim()
 
+        // Check if the input fields are valid
         if (isValidInput(
-                nameInput,
-                inChargeInput,
-                contactNumInput,
-                occupantsInput,
-                statusSelected
+                nameInput to binding.nameTextInput,
+                inChargeInput to binding.inChargeTextInput,
+                contactNumInput to binding.inChargeContactNumTextInput,
+                occupantsInput to binding.occupantsTextInput,
+                statusSelected to binding.statusDropdown
             )
         ) {
-
             databaseReference = FirebaseDatabase.getInstance().getReference("Evacuation Centers")
 
-            // Use push() to generate a unique key
-            val newEvacuationCenterRef = databaseReference.push()
-            val newEvacuationCenterId = newEvacuationCenterRef.key
+            evacuationCenterId =
+                databaseReference.push().key // Use push() to generate a unique key
 
-            // Check if the ID already exists in the database
+            // Check if the inputted evacuation center already exists in the database
             databaseReference.orderByChild("placeId").equalTo(placeId)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -137,23 +156,26 @@ class EvacuationCenterAdd : AppCompatActivity() {
                                 "This evacuation center is already listed. Please choose another to avoid duplication."
                             )
                         } else {
-                            // If Place ID doesn't exist, save the data to the database
+                            // If the place doesn't already exist in the database, save the it to the database
+
                             val evacuationCenterData = EvacuationCenterData(
-                                newEvacuationCenterId, placeId, name, address, latitude, longitude, statusSelected,
-                                inChargeInput, contactNumInput, occupantsInput
+                                // !! Make sure that they are sorted in the same order as the constructor of EvacuationCenterData (data class/model) !!
+                                evacuationCenterId, placeId, name, address, latitude, longitude,
+                                statusSelected, inChargeInput, contactNumInput, occupantsInput
                             )
-                            databaseReference.child(newEvacuationCenterId!!).setValue(evacuationCenterData).addOnSuccessListener {
-                                binding.nameTextInput.text.clear()
-                                binding.inChargeTextInput.text?.clear()
-                                binding.inChargeContactNumTextInput.text?.clear()
-                                binding.occupantsTextInput.text?.clear()
-                                binding.statusDropdown.text.clear()
 
-                                showToast("Evacuation Center added successfully.")
-                            }.addOnFailureListener {
-                                showSnackbar("Failed to add evacuation center.")
-                            }
+                            databaseReference.child(evacuationCenterId!!).setValue(evacuationCenterData)
 
+                                .addOnSuccessListener{
+                                    Toast.makeText(this@EvacuationCenterAdd, "$name was added successfully.",
+                                        Toast.LENGTH_SHORT).show() // Evacuation center has been added successfully
+                                    clearInputFields()
+                                }
+
+                                .addOnFailureListener {
+                                    Toast.makeText(this@EvacuationCenterAdd, "An error has occurred while adding $name.",
+                                        Toast.LENGTH_SHORT).show()  // Evacuation center failed to be added
+                                }
                         }
                     }
 
@@ -164,102 +186,59 @@ class EvacuationCenterAdd : AppCompatActivity() {
         }
     }
 
-    private fun isValidInput(
-        nameInput: String,
-        inChargeInput: String,
-        contactNumInput: String,
-        occupantsInput: String,
-        statusSelected: String
-    ): Boolean {
-        return when {
-            nameInput.isEmpty() -> {
-                showErrorAndFocus(binding.nameTextInput, "Please select a place")
-                false
-            }
-
-            inChargeInput.isEmpty() -> {
-                showErrorAndFocus(
-                    binding.inChargeTextInput,
-                    "Please input the name of the person in charge"
-                )
-                false
-            }
-
-            contactNumInput.isEmpty() -> {
-                showErrorAndFocus(
-                    binding.inChargeContactNumTextInput,
-                    "Please input the contact number of the person in charge"
-                )
-                false
-            }
-
-            occupantsInput.isEmpty() -> {
-                showErrorAndFocus(binding.occupantsTextInput, "Please input the sitio occupants")
-                false
-            }
-
-            statusSelected.isEmpty() -> {
-                showErrorAndFocus(
-                    binding.statusDropdown,
-                    "Please select the status of the evacuation center"
-                )
-                false
-            }
-
-            else -> true
-        }
-    }
-
-    private fun showErrorAndFocus(view: EditText, errorMessage: String) {
-        view.error = errorMessage
-        view.requestFocus()
-    }
-
-    private fun navigateToEvacuationCenters() {
-        startActivity(Intent(this, EvacuationCenters::class.java))
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showSnackbar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    private fun clearInputFields() {
+        binding.nameTextInput.text.clear()
+        binding.inChargeTextInput.text?.clear()
+        binding.inChargeContactNumTextInput.text?.clear()
+        binding.occupantsTextInput.text?.clear()
+        binding.statusDropdown.text.clear()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            when (resultCode) {
-                Activity.RESULT_OK -> {
-                    val place = Autocomplete.getPlaceFromIntent(data!!)
-                    placeId = place.id
-                    name = place.name
-                    address = place.address
-                    longitude = place.latLng?.longitude.toString()
-                    latitude = place.latLng?.latitude.toString()
-                    binding.nameTextInput.setText(place.name)
+            handleAutocompleteActivityResult(resultCode, data)
+        }
+    }
 
-                    // Clear the error for nameTextInput
-                    binding.nameTextInput.error = null
+    private fun handleAutocompleteActivityResult(resultCode: Int, data: Intent?) {
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                val place = Autocomplete.getPlaceFromIntent(data!!)
+                updatePlaceData(place)
+            }
 
-                    Log.i(TAG, "Place ID: $placeId, $name, $address, $longitude, $latitude")
-                }
+            AutocompleteActivity.RESULT_ERROR -> {
+                val status = Autocomplete.getStatusFromIntent(data!!)
+                Toast.makeText(this, "Error: ${status.statusMessage}", Toast.LENGTH_SHORT).show()
+            }
 
-                AutocompleteActivity.RESULT_ERROR -> {
-                    val status = Autocomplete.getStatusFromIntent(data!!)
-                    Snackbar.make(binding.root, status.statusMessage!!, Snackbar.LENGTH_SHORT)
-                        .show()
-
-                    // Set the error for nameTextInput
-                    showErrorAndFocus(binding.nameTextInput, "Please select a place")
-                }
-
-                Activity.RESULT_CANCELED -> {
-                    Log.i(TAG, "The user cancelled the operation.")
-                }
+            Activity.RESULT_CANCELED -> {
+                Log.i(TAG, "The user cancelled the operation.")
             }
         }
     }
+
+    private fun updatePlaceData(place: Place) {
+        placeId = place.id
+        name = place.name
+        address = place.address
+        longitude = place.latLng?.longitude.toString()
+        latitude = place.latLng?.latitude.toString()
+        binding.nameTextInput.setText(place.name)
+
+        // Clear the error for nameTextInput
+        binding.nameTextInput.error = null
+
+        // Logs the data of the place that was selected from Google Places Autocomplete widget
+        // !! This is for debugging purposes only!!
+        // TODO: Remove this later
+        Log.d(TAG, "Place ID: $placeId, $name, $address, $longitude, $latitude")
+    }
+
 }
+
+
+
+
