@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+private const val TAG = "EvacuationCenters"
+
 class EvacuationCenters : AppCompatActivity() {
 
     private lateinit var binding: ActivityEvacuationCentersBinding
@@ -35,7 +37,7 @@ class EvacuationCenters : AppCompatActivity() {
 
         //ADD EVACUATION CENTER BUTTON
         binding.fabAddEvacuationCenter.setOnClickListener {
-            val intent = Intent(this, EvacuationCenterAddEdit::class.java)
+            val intent = Intent(this, EvacuationCenterAdd::class.java)
             startActivity(intent)
         }
 

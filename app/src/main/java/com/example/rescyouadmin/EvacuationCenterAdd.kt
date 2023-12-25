@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rescyouadmin.databinding.ActivityEvacuationCenterAddEditBinding
+import com.example.rescyouadmin.databinding.ActivityEvacuationCenterAddBinding
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -26,26 +26,26 @@ import com.google.firebase.database.ValueEventListener
 
 private const val TAG = "EvacuationCenterAdd"
 
-class EvacuationCenterAddEdit : AppCompatActivity() {
+class EvacuationCenterAdd : AppCompatActivity() {
 
     companion object {
         private const val AUTOCOMPLETE_REQUEST_CODE = 9001
     }
 
-    private lateinit var binding: ActivityEvacuationCenterAddEditBinding
-    private lateinit var data: FirebaseDatabase
+    private lateinit var binding: ActivityEvacuationCenterAddBinding
     private lateinit var databaseReference: DatabaseReference
 
     // Variable Declarations
-    private var id: String? = null
+    private var placeId: String? = null
     private var name: String? = null
     private var address: String? = null
     private var latitude: String? = null
     private var longitude: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEvacuationCenterAddEditBinding.inflate(layoutInflater)
+        binding = ActivityEvacuationCenterAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -74,9 +74,11 @@ class EvacuationCenterAddEdit : AppCompatActivity() {
 
     private fun setupPlacesAutocomplete() {
         Places.initialize(applicationContext, getString(R.string.api_key))
-        binding.nameTextInput.setOnTouchListener { _, event ->
+
+        binding.nameTextInput.setOnTouchListener { view, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 startAutocompleteActivity()
+                view.performClick()
             }
             true
         }
@@ -118,25 +120,40 @@ class EvacuationCenterAddEdit : AppCompatActivity() {
                 statusSelected
             )
         ) {
-            data = FirebaseDatabase.getInstance()
-            databaseReference = data.getReference("Evacuation Centers")
+
+            databaseReference = FirebaseDatabase.getInstance().getReference("Evacuation Centers")
+
+            // Use push() to generate a unique key
+            val newEvacuationCenterRef = databaseReference.push()
+            val newEvacuationCenterId = newEvacuationCenterRef.key
 
             // Check if the ID already exists in the database
-            databaseReference.orderByChild("id").equalTo(id)
+            databaseReference.orderByChild("placeId").equalTo(placeId)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-                            showErrorAndFocus(binding.nameTextInput, "This evacuation center is already listed. Please choose another to avoid duplication.")
+                            showErrorAndFocus(
+                                binding.nameTextInput,
+                                "This evacuation center is already listed. Please choose another to avoid duplication."
+                            )
                         } else {
-                            // ID doesn't exist, proceed to save the data
+                            // If Place ID doesn't exist, save the data to the database
                             val evacuationCenterData = EvacuationCenterData(
-                                id, name, address, latitude, longitude, statusSelected,
+                                newEvacuationCenterId, placeId, name, address, latitude, longitude, statusSelected,
                                 inChargeInput, contactNumInput, occupantsInput
                             )
-                            val evacuationCenterRef = databaseReference.push()
-                            evacuationCenterRef.setValue(evacuationCenterData)
-                            showToast("Evacuation Center added successfully.")
-                            navigateToEvacuationCenters()
+                            databaseReference.child(newEvacuationCenterId!!).setValue(evacuationCenterData).addOnSuccessListener {
+                                binding.nameTextInput.text.clear()
+                                binding.inChargeTextInput.text?.clear()
+                                binding.inChargeContactNumTextInput.text?.clear()
+                                binding.occupantsTextInput.text?.clear()
+                                binding.statusDropdown.text.clear()
+
+                                showToast("Evacuation Center added successfully.")
+                            }.addOnFailureListener {
+                                showSnackbar("Failed to add evacuation center.")
+                            }
+
                         }
                     }
 
@@ -217,7 +234,7 @@ class EvacuationCenterAddEdit : AppCompatActivity() {
             when (resultCode) {
                 Activity.RESULT_OK -> {
                     val place = Autocomplete.getPlaceFromIntent(data!!)
-                    id = place.id
+                    placeId = place.id
                     name = place.name
                     address = place.address
                     longitude = place.latLng?.longitude.toString()
@@ -227,7 +244,7 @@ class EvacuationCenterAddEdit : AppCompatActivity() {
                     // Clear the error for nameTextInput
                     binding.nameTextInput.error = null
 
-                    Log.i(TAG, "Place: $id, $name, $address, $longitude, $latitude")
+                    Log.i(TAG, "Place ID: $placeId, $name, $address, $longitude, $latitude")
                 }
 
                 AutocompleteActivity.RESULT_ERROR -> {

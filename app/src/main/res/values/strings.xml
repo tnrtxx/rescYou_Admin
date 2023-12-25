@@ -178,5 +178,6 @@
     <string name="save">Save</string>
     <string name="status">Status</string>
     <string name="search_for_a_place">Search for a place...</string>
+    <string name="available">Available</string>
 
 </resources>

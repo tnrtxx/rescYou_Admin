@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray"
-    tools:context=".EvacuationCenterAddEdit">
+    tools:context=".EvacuationCenterAdd">
 
     <!--HEADER-->
     <androidx.cardview.widget.CardView
@@ -36,7 +36,7 @@
                 android:id="@+id/addEvacuationCenterHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Evacuation Center"
+                android:text="Edit Evacuation Center"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"
@@ -56,13 +56,13 @@
         app:layout_constraintTop_toBottomOf="@id/header">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameTextLayout"
+            android:id="@+id/editNameTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
 
             <EditText
-                android:id="@+id/nameTextInput"
+                android:id="@+id/editNameTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -74,13 +74,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inChargeTextLayout"
+            android:id="@+id/editInChargeTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inChargeTextInput"
+                android:id="@+id/editInChargeTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/in_charge"
@@ -88,14 +88,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inChargeContactNumTextLayout"
+            android:id="@+id/editInChargeContactNumTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
             <com.google.android.material.textfield.TextInputEditText
 
-                android:id="@+id/inChargeContactNumTextInput"
+                android:id="@+id/editInChargeContactNumTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/contact_number"
@@ -103,13 +103,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/occupantsTextLayout"
+            android:id="@+id/editOccupantsTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/occupantsTextInput"
+                android:id="@+id/editOccupantsTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/occupant_s"
@@ -117,23 +117,24 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/statusTextLayout"
+            android:id="@+id/editStatusTextLayout"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp">
 
             <AutoCompleteTextView
-                android:id="@+id/statusDropdown"
+                android:id="@+id/editStatusDropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/status"
+                android:text="@string/available"
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <android.widget.Button
-            android:id="@+id/saveEvacuationCenterButton"
+            android:id="@+id/updateEvacuationCenterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -150,7 +151,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@drawable/rounded_corner"
-            android:foregroundTint="@color/white"
             android:padding="14dp"
             android:text="@string/cancel"
             android:textColor="@color/white"
