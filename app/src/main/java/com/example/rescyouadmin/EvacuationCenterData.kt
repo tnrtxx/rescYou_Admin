@@ -13,12 +13,4 @@ data class EvacuationCenterData(
     var inCharge: String? = null,
     var inChargeContactNum: String? = null,
     var occupants: String? = null,
-) : Serializable {
-    override fun toString(): String {
-        return "EvacuationCenterData(evacuationCenterId=$evacuationCenterId, " +
-                "placeId=$placeId, name=$name, address=$address, " +
-                "latitude=$latitude, longitude=$longitude, status=$status, " +
-                "inCharge=$inCharge, inChargeContactNum=$inChargeContactNum, occupants=$occupants)"
-    }
-
-}
+) : Serializable
