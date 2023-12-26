@@ -100,6 +100,15 @@ class EvacuationCenterAdapter(private var evacuationCenterArrayList: List<Evacua
             builder.setNegativeButton("No") { _, _ -> }
             builder.show()
         }
+
+        // Add bottom margin to the last item
+        // This will avoid the last item from being hidden by the fab
+        val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
+        if (position == itemCount - 1) {
+            layoutParams.bottomMargin = holder.itemView.context.resources.getDimensionPixelSize(R.dimen.margin_bottom_last_item)
+        } else {
+            layoutParams.bottomMargin = 0
+        }
     }
 
     // This class is responsible for holding the views that will be used to display the data.

@@ -183,6 +183,7 @@
                 android:background="@color/navy_blue"
                 android:padding="12dp"
                 android:text="@string/edit"
+
                 android:textAlignment="center"
                 android:textColor="@color/light_gray"
                 android:textSize="16sp"
