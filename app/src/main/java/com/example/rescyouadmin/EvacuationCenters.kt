@@ -74,7 +74,7 @@ class EvacuationCenters : AppCompatActivity() {
 
         // Firebase setup
         databaseReference = FirebaseDatabase.getInstance("https://rescyou-57570-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Evacuation Centers")
-        databaseReference.keepSynced(true)
+        databaseReference.keepSynced(true) //add this line of code after nung Firebase get instance para sa mga page na need ioffline.
 
         // Event listener for data changes
         databaseReference.addValueEventListener(object : ValueEventListener {
