@@ -40,7 +40,6 @@ class EvacuationCenters : AppCompatActivity() {
         initializeUI()                  // Initialize UI components
         initializeRecyclerView()        // Initialize RecyclerView and its adapter
         getEvacuationCenterData()       // Fetch and display evacuation center data
-
     }
 
     /*** Helper Functions ***/
