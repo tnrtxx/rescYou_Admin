@@ -37,9 +37,9 @@ class EvacuationCenters : AppCompatActivity() {
         binding = ActivityEvacuationCentersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initializeUI()              // Initialize UI components
-        initializeRecyclerView()    // Initialize RecyclerView and its adapter
-        getUserData()               // Fetch and display evacuation center data
+        initializeUI()                  // Initialize UI components
+        initializeRecyclerView()        // Initialize RecyclerView and its adapter
+        getEvacuationCenterData()       // Fetch and display evacuation center data
 
     }
 
@@ -70,7 +70,7 @@ class EvacuationCenters : AppCompatActivity() {
         evacuationCenterRecyclerView.adapter = evacuationCenterAdapter
     }
 
-    private fun getUserData() {
+    private fun getEvacuationCenterData() {
 
         // Firebase setup
         databaseReference = FirebaseDatabase.getInstance("https://rescyou-57570-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Evacuation Centers")
