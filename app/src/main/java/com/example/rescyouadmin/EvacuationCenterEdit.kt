@@ -46,8 +46,8 @@ class EvacuationCenterEdit : AppCompatActivity() {
     private var updatedPlaceId: String? = null
     private var updatedName: String? = null
     private var updatedAddress: String? = null
-    private var updatedLatitude: String? = null
-    private var updatedLongitude: String? = null
+    private var updatedLatitude: Double? = 0.0
+    private var updatedLongitude: Double? = 0.0
     private var updatedInCharge: String? = null
     private var updatedInChargeContactNum: String? = null
     private var updatedOccupants: String? = null
@@ -68,8 +68,8 @@ class EvacuationCenterEdit : AppCompatActivity() {
         updatedPlaceId = intent.getStringExtra("placeId")
         updatedName = intent.getStringExtra("name")
         updatedAddress = intent.getStringExtra("address")
-        updatedLatitude = intent.getStringExtra("latitude")
-        updatedLongitude = intent.getStringExtra("longitude")
+        updatedLatitude = intent.getDoubleExtra("latitude", 0.0)
+        updatedLongitude = intent.getDoubleExtra("longitude", 0.0)
         updatedInCharge = intent.getStringExtra("inCharge")
         updatedInChargeContactNum = intent.getStringExtra("inChargeContactNum")
         updatedOccupants = intent.getStringExtra("occupants")
@@ -93,16 +93,16 @@ class EvacuationCenterEdit : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            navigateToEvacuationCenters() // Navigate to the EvacuationCenters activity
+            finish() // Finish the activity
         }
 
         binding.cancelEvacuationCenterButton.setOnClickListener {
-            navigateToEvacuationCenters() // Navigate to the EvacuationCenters activity
+            finish() // Finish the activity
         }
     }
 
     private fun setupPlacesAutocomplete() {
-        Places.initialize(applicationContext, getString(R.string.api_key))
+        Places.initialize(applicationContext, Constants.GOOGLE_MAPS_API_KEY)
         binding.editNameTextInput.setOnTouchListener { view, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 startAutocompleteActivity()
@@ -145,10 +145,6 @@ class EvacuationCenterEdit : AppCompatActivity() {
     private fun showErrorAndFocus(view: EditText, errorMessage: String) {
         view.error = errorMessage
         view.requestFocus()
-    }
-
-    private fun navigateToEvacuationCenters() {
-        startActivity(Intent(this, EvacuationCenters::class.java))
     }
 
     private fun updateEvacuationCenter() {
@@ -208,8 +204,8 @@ class EvacuationCenterEdit : AppCompatActivity() {
                                         ).show()  // Evacuation center failed to be updated
                                     }
                             }
-                            // Navigate to the EvacuationCenters activity
-                            navigateToEvacuationCenters()
+                            // Exit the activity
+                            finish()
                         }
                     }
 
@@ -222,10 +218,12 @@ class EvacuationCenterEdit : AppCompatActivity() {
         // Log the updated data
         // !! This is for debugging purposes only!!
         // TODO: Remove this later
-        Log.i(TAG,
+        Log.i(
+            TAG,
             "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, InCharge: $updatedInCharge, " +
                     "InChargeContactNum: $updatedInChargeContactNum, Occupants: $updatedOccupants, " +
-                    "Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude")
+                    "Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
+        )
 
 
     }
@@ -260,8 +258,8 @@ class EvacuationCenterEdit : AppCompatActivity() {
         updatedPlaceId = place.id
         updatedName = place.name
         updatedAddress = place.address
-        updatedLongitude = place.latLng?.longitude.toString()
-        updatedLatitude = place.latLng?.latitude.toString()
+        updatedLongitude = place.latLng?.longitude
+        updatedLatitude = place.latLng?.latitude
         binding.editNameTextInput.setText(place.name)
 
         // Clear the error for nameTextInput
@@ -273,6 +271,7 @@ class EvacuationCenterEdit : AppCompatActivity() {
         Log.i(
             TAG,
             "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, InCharge: $updatedInCharge, InChargeContactNum: $updatedInChargeContactNum, Occupants: $updatedOccupants, Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
-        )    }
+        )
+    }
 
 }

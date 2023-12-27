@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import org.checkerframework.checker.units.qual.C
 
 /**
  * EvacuationCenterAdd
@@ -44,8 +45,8 @@ class EvacuationCenterAdd : AppCompatActivity() {
     private var placeId: String? = null
     private var name: String? = null
     private var address: String? = null
-    private var latitude: String? = null
-    private var longitude: String? = null
+    private var latitude: Double? = 0.0
+    private var longitude: Double? = 0.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,13 +63,11 @@ class EvacuationCenterAdd : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            startActivity(Intent(this, EvacuationCenters::class.java)
-            ) // Navigate to the EvacuationCenters activity
+            finish() // Close the activity
         }
 
         binding.cancelEvacuationCenterButton.setOnClickListener {
-            startActivity(Intent(this, EvacuationCenters::class.java)
-            ) // Navigate to the EvacuationCenters activity
+            finish() // Close the activity
         }
 
         setupPlacesAutocomplete() // Setup Places Autocomplete
@@ -78,7 +77,7 @@ class EvacuationCenterAdd : AppCompatActivity() {
     /*** Helper Functions ***/
 
     private fun setupPlacesAutocomplete() {
-        Places.initialize(applicationContext, getString(R.string.api_key))
+        Places.initialize(applicationContext, Constants.GOOGLE_MAPS_API_KEY)
 
         binding.nameTextInput.setOnTouchListener { view, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
@@ -224,8 +223,8 @@ class EvacuationCenterAdd : AppCompatActivity() {
         placeId = place.id
         name = place.name
         address = place.address
-        longitude = place.latLng?.longitude.toString()
-        latitude = place.latLng?.latitude.toString()
+        longitude = place.latLng?.longitude
+        latitude = place.latLng?.latitude
         binding.nameTextInput.setText(place.name)
 
         // Clear the error for nameTextInput

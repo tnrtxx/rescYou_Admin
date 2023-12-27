@@ -63,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:contentDescription="Add Evacuation Center"
-        android:text="Add New"
-        app:icon="@drawable/round_add_24"
+        style="@style/AddFab"
+        android:contentDescription="@string/add_evacuation_center"
+        android:text="@string/add_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/evacuation_center_recycler_view" />
 

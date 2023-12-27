@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">rescYou Admin</string>
-    <string name="api_key">AIzaSyAGCgwA7wV7tmsmLwg93pDuCntA00InE7M</string>
-
 
     <!--Starting Page-->
     <string name="sign_up">Sign Up</string>
@@ -179,5 +177,7 @@
     <string name="status">Status</string>
     <string name="search_for_a_place">Search for a place...</string>
     <string name="available">Available</string>
+    <string name="add_evacuation_center">Add Evacuation Center</string>
+    <string name="add_new">Add New</string>
 
 </resources>

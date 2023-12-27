@@ -58,9 +58,6 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".Information"
-            android:exported="false" />
-        <activity
             android:name=".PreparednessTips"
             android:exported="false" />
         <activity

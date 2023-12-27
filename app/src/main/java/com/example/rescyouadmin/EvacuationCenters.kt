@@ -48,8 +48,7 @@ class EvacuationCenters : AppCompatActivity() {
 
         // Back Button: Navigate to the Home activity
         binding.backButton.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            finish()
         }
 
         // Add New Evacuation Center Button: Navigate to the EvacuationCenterAdd activity for adding a new evacuation center
