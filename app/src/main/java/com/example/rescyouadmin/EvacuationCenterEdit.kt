@@ -167,47 +167,45 @@ class EvacuationCenterEdit : AppCompatActivity() {
             // Update the evacuation center data in the database
             databaseReference = FirebaseDatabase.getInstance().getReference("Evacuation Centers")
 
-            // Check if the inputted evacuation center already exists in the database
-            databaseReference.orderByChild("placeId").equalTo(updatedPlaceId)
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
+            // Find the existing evacuation center using the evacuationCenterId
+            databaseReference.child(evacuationCenterId!!).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        // If the placeId is the same, update the data
+                        if (snapshot.child("placeId").getValue(String::class.java) == updatedPlaceId) {
+                            snapshot.ref.updateChildren(
+                                mapOf(
+                                    "name" to updatedName,
+                                    "inCharge" to updatedInCharge,
+                                    "inChargeContactNum" to updatedInChargeContactNum,
+                                    "occupants" to updatedOccupants,
+                                    "status" to updatedStatus
+                                )
+                            ).addOnSuccessListener {
+                                Toast.makeText(
+                                    this@EvacuationCenterEdit,
+                                    "Evacuation Center was edited successfully.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                finish()
+                            }.addOnFailureListener {
+                                Toast.makeText(
+                                    this@EvacuationCenterEdit,
+                                    "An error has occurred while editing the evacuation center.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            // If the placeId is different, show an error
                             showErrorAndFocus(
                                 binding.editNameTextInput,
                                 "This evacuation center is already listed. Please choose another to avoid duplication."
                             )
-                        } else {
-                            // If the place doesn't already exist in the database, save the it to the database
-                            val evacuationCenter = EvacuationCenterData(
-                                // !! Make sure that they are sorted in the same order as the constructor of EvacuationCenterData (data class/model) !!
-                                evacuationCenterId, updatedPlaceId, updatedName, updatedAddress,
-                                updatedLatitude, updatedLongitude, updatedStatus, updatedInCharge,
-                                updatedInChargeContactNum, updatedOccupants
-                            )
-
-                            evacuationCenterId?.let {
-                                databaseReference.child(it).setValue(evacuationCenter)
-
-                                    .addOnSuccessListener {
-                                        Toast.makeText(
-                                            this@EvacuationCenterEdit,
-                                            "Evacuation Center was edited successfully.",
-                                            Toast.LENGTH_SHORT
-                                        ).show() // Evacuation center has been updated successfully
-                                    }
-
-                                    .addOnFailureListener {
-                                        Toast.makeText(
-                                            this@EvacuationCenterEdit,
-                                            "An error has occurred while editing the evacuation center.",
-                                            Toast.LENGTH_SHORT
-                                        ).show()  // Evacuation center failed to be updated
-                                    }
-                            }
-                            // Exit the activity
-                            finish()
                         }
+                    } else {
+                        Log.e(TAG, "Evacuation center not found in the database.")
                     }
+                }
 
                     override fun onCancelled(error: DatabaseError) {
                         Log.e(TAG, "Database error: ${error.message}")
