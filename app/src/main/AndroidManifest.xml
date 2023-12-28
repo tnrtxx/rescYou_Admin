@@ -40,6 +40,15 @@
         android:theme="@style/Theme.RescYouAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".EvacuationCenterEdit"
+            android:exported="false" />
+        <activity
+            android:name=".EvacuationCenterAdd"
+            android:exported="false" />
+        <activity
+            android:name=".EvacuationCenters"
+            android:exported="false" />
+        <activity
             android:name=".PerDisaster"
             android:exported="false" />
         <activity
@@ -47,9 +56,6 @@
             android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="false" />
-        <activity
-            android:name=".Information"
             android:exported="false" />
         <activity
             android:name=".PreparednessTips"
