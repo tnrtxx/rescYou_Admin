@@ -180,4 +180,7 @@
     <string name="add_evacuation_center">Add Evacuation Center</string>
     <string name="add_new">Add New</string>
 
+
+    <!--RESOLVED PINS-->
+    <string name="resolved_pins">Resolved Pins</string>
 </resources>
