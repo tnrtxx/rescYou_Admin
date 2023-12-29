@@ -3,6 +3,7 @@ package com.example.rescyouadmin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rescyouadmin.databinding.ActivityResolvedPinsBinding
@@ -59,6 +60,10 @@ class ResolvedPins : AppCompatActivity() {
                     }
                 }
                 adapter.notifyDataSetChanged()
+
+                // Update total_resolved_pins TextView
+                val totalResolvedPinsTextView: TextView = findViewById(R.id.total_resolved_pins)
+                totalResolvedPinsTextView.text = "Total Resolved Pins: ${resolvedList.size}"
             }
 
             override fun onCancelled(error: DatabaseError) {
