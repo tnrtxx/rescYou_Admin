@@ -53,7 +53,7 @@ class ResolvedPins : AppCompatActivity() {
                 resolvedList.clear()
                 for (itemSnapshot in snapshot.children) {
                     val pinDataClass = itemSnapshot.getValue(PinDataClass::class.java)
-                    if (pinDataClass != null) {
+                    if (pinDataClass != null && pinDataClass.resolved == "true") {
                         pinDataClass.key = itemSnapshot.key
                         resolvedList.add(pinDataClass)
                     }

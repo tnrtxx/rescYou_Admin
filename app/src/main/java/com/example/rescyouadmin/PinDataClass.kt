@@ -8,6 +8,7 @@ data class PinDataClass(
     var disasterType: String? = null,
     var pinName: String? = null,
     var pinRescuer: String? = null,
+    var pinRescuerID: String? = null,
     var rate: String? = null,
     var resolved: String="false",
     var sitio: String? = null,
