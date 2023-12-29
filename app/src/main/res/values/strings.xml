@@ -181,4 +181,14 @@
     <string name="add_evacuation_center">Add Evacuation Center</string>
     <string name="add_new">Add New</string>
 
+
+    <!--Resolving Pin-->
+    <string name="rescued_by">Rescued by:</string>
+    <string name="ratings_situation">Ratings of the situation:</string>
+    <string name="disaster">Type of disaster:</string>
+    <string name="current_sitio">Sitio:</string>
+    <string name="current_desc">Description:</string>
+
+
+
 </resources>

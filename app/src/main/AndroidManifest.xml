@@ -40,6 +40,9 @@
         android:theme="@style/Theme.RescYouAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".ResolvedPins"
+            android:exported="false" />
+        <activity
             android:name=".EvacuationCenterEdit"
             android:exported="false" />
         <activity

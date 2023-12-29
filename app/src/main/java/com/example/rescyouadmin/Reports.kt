@@ -14,6 +14,13 @@ class Reports : AppCompatActivity() {
         binding = ActivityReportsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //RESOLVED PINS BUTTON
+        binding.resolvedpinsButton.setOnClickListener {
+            val intent = Intent(this, ResolvedPins::class.java)
+            startActivity(intent)
+        }
+
         //BOTTOM NAV VIEW
         // Initialize and assign variable
         var bottomNavigationView = binding.bottomNavView
