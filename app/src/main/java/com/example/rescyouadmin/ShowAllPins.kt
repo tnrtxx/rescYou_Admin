@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener
 
 class ShowAllPins : AppCompatActivity() {
 
+
     private lateinit var binding: ActivityShowAllPinsBinding
     private lateinit var allPinsList: MutableList<PinDataClass>
     private lateinit var adapter: ShowAllPinsAdapter

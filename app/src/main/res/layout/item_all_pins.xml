@@ -96,6 +96,7 @@
                         tools:text="11:00 PM"
                         android:textStyle="italic"/>
 
+
                     <TextView
                         android:id="@+id/date_textview"
                         android:layout_width="wrap_content"
@@ -250,10 +251,7 @@
                             android:layout_below="@id/description_linearlayout"
                             android:orientation="horizontal"
                             tools:listitem="@layout/item_attachment"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            ></androidx.recyclerview.widget.RecyclerView>
-
-
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
                     </HorizontalScrollView>
 
