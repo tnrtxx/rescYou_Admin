@@ -246,9 +246,8 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/attachments_recycler_view"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/description_linearlayout"
                             android:orientation="horizontal"
                             tools:listitem="@layout/item_attachment"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />

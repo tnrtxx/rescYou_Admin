@@ -49,6 +49,7 @@
     </androidx.cardview.widget.CardView>
 
 
+
     <!-- Total Resolved Pins -->
     <TextView
         android:id="@+id/total_pins"

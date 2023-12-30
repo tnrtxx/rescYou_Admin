@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.rescyouadmin.databinding.ItemAllPinsBinding
 
 
-private const val TAG = "ShowAllPinsAdapter"
 class ShowAllPinsAdapter(private val pinsArrayList: List<PinDataClass>) :
     RecyclerView.Adapter<ShowAllPinsAdapter.MyViewHolder>() {
 
