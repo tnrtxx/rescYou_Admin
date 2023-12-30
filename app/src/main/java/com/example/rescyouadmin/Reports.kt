@@ -14,6 +14,11 @@ class Reports : AppCompatActivity() {
         binding = ActivityReportsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //SHOW ALL PINS BUTTON
+        binding.allpinsButton.setOnClickListener {
+            val intent = Intent(this, ShowAllPins::class.java)
+            startActivity(intent)
+        }
 
         //RESOLVED PINS BUTTON
         binding.resolvedpinsButton.setOnClickListener {
