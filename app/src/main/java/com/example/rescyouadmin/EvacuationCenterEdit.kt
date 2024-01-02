@@ -48,8 +48,6 @@ class EvacuationCenterEdit : AppCompatActivity() {
     private var updatedAddress: String? = null
     private var updatedLatitude: Double? = 0.0
     private var updatedLongitude: Double? = 0.0
-    private var updatedInCharge: String? = null
-    private var updatedInChargeContactNum: String? = null
     private var updatedOccupants: String? = null
     private var updatedStatus: String? = null
 
@@ -70,15 +68,11 @@ class EvacuationCenterEdit : AppCompatActivity() {
         updatedAddress = intent.getStringExtra("address")
         updatedLatitude = intent.getDoubleExtra("latitude", 0.0)
         updatedLongitude = intent.getDoubleExtra("longitude", 0.0)
-        updatedInCharge = intent.getStringExtra("inCharge")
-        updatedInChargeContactNum = intent.getStringExtra("inChargeContactNum")
         updatedOccupants = intent.getStringExtra("occupants")
         updatedStatus = intent.getStringExtra("status")
 
         // Set data to text fields
         binding.editNameTextInput.setText(updatedName)
-        binding.editInChargeTextInput.setText(updatedInCharge)
-        binding.editInChargeContactNumTextInput.setText(updatedInChargeContactNum)
         binding.editOccupantsTextInput.setText(updatedOccupants)
         binding.editStatusDropdown.setText(
             updatedStatus, false
@@ -150,16 +144,11 @@ class EvacuationCenterEdit : AppCompatActivity() {
     private fun updateEvacuationCenter() {
         // Get the updated data from the text fields
         val updatedName = binding.editNameTextInput.text.toString().trim()
-        val updatedInCharge = binding.editInChargeTextInput.text.toString().trim()
-        val updatedInChargeContactNum =
-            binding.editInChargeContactNumTextInput.text.toString().trim()
         val updatedOccupants = binding.editOccupantsTextInput.text.toString().trim()
         val updatedStatus = binding.editStatusDropdown.text.toString().trim()
 
         if (isValidInput(
                 updatedName to binding.editNameTextInput,
-                updatedInCharge to binding.editInChargeTextInput,
-                updatedInChargeContactNum to binding.editInChargeContactNumTextInput,
                 updatedOccupants to binding.editOccupantsTextInput,
                 updatedStatus to binding.editStatusDropdown
             )
@@ -176,8 +165,6 @@ class EvacuationCenterEdit : AppCompatActivity() {
                             snapshot.ref.updateChildren(
                                 mapOf(
                                     "name" to updatedName,
-                                    "inCharge" to updatedInCharge,
-                                    "inChargeContactNum" to updatedInChargeContactNum,
                                     "occupants" to updatedOccupants,
                                     "status" to updatedStatus
                                 )
@@ -218,8 +205,7 @@ class EvacuationCenterEdit : AppCompatActivity() {
         // TODO: Remove this later
         Log.i(
             TAG,
-            "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, InCharge: $updatedInCharge, " +
-                    "InChargeContactNum: $updatedInChargeContactNum, Occupants: $updatedOccupants, " +
+            "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, Occupants: $updatedOccupants, " +
                     "Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
         )
 
@@ -268,7 +254,7 @@ class EvacuationCenterEdit : AppCompatActivity() {
         // TODO: Remove this later
         Log.i(
             TAG,
-            "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, InCharge: $updatedInCharge, InChargeContactNum: $updatedInChargeContactNum, Occupants: $updatedOccupants, Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
+            "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, Occupants: $updatedOccupants, Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
         )
     }
 
