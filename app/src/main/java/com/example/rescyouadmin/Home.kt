@@ -24,7 +24,7 @@ class Home : AppCompatActivity() {
 
         //Hotlines
         binding.hotlinesButton.setOnClickListener {
-//            val intent = Intent(this, Hotlines::class.java)
+            val intent = Intent(this, com.example.rescyouadmin.Hotlines::class.java)
             startActivity(intent)
         }
 
