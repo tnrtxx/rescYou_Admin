@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rescyouadmin.databinding.ItemResolvedpinsBinding
 
-class ResolvedPinsAdapter(private val pins: List<PinDataClass>) : RecyclerView.Adapter<ResolvedPinsAdapter.PinViewHolder>() {
+class ResolvedPinsAdapter(private val pins: MutableList<PinDataClass>) : RecyclerView.Adapter<ResolvedPinsAdapter.PinViewHolder>() {
 
     class PinViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val pinNameTextView: TextView = itemView.findViewById(R.id.pinnedby_name_textview)
@@ -43,6 +43,15 @@ class ResolvedPinsAdapter(private val pins: List<PinDataClass>) : RecyclerView.A
         //DATE AND TIME
         holder.dateTextView.text = pin.date
         holder.timeTextView.text = pin.time
+
+
+        // Add bottom margin to the last item
+        val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
+        if (position == itemCount - 1) {
+            layoutParams.bottomMargin = holder.itemView.context.resources.getDimensionPixelSize(R.dimen.margin_bottom_last_item_smaller)
+        } else {
+            layoutParams.bottomMargin = 0
+        }
     }
 
     override fun getItemCount() = pins.size
@@ -61,6 +70,7 @@ class ResolvedPinsAdapter(private val pins: List<PinDataClass>) : RecyclerView.A
         override fun onBindViewHolder(holder: AttachmentViewHolder, position: Int) {
             val attachment = attachments[position]
             Glide.with(holder.imageView.context).load(attachment).into(holder.imageView)
+
         }
 
         override fun getItemCount() = attachments.size

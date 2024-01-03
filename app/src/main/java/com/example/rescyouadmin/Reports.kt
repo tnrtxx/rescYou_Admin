@@ -14,12 +14,24 @@ class Reports : AppCompatActivity() {
         binding = ActivityReportsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //SHOW ALL PINS BUTTON
+        binding.allpinsButton.setOnClickListener {
+            val intent = Intent(this, ShowAllPins::class.java)
+            startActivity(intent)
+        }
 
         //RESOLVED PINS BUTTON
         binding.resolvedpinsButton.setOnClickListener {
             val intent = Intent(this, ResolvedPins::class.java)
             startActivity(intent)
         }
+
+        //PER SITIO TOTAL BUTTON
+        binding.persitioButton.setOnClickListener {
+            val intent = Intent(this, PerSitioTotal::class.java)
+            startActivity(intent)
+        }
+
 
         //BOTTOM NAV VIEW
         // Initialize and assign variable

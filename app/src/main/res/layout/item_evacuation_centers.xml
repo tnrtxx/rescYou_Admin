@@ -8,6 +8,7 @@
     android:layout_marginTop="24dp"
     android:layout_marginRight="24dp"
     android:elevation="12dp"
+    app:cardBackgroundColor="@color/light_gray"
     app:cardCornerRadius="12dp">
 
     <LinearLayout
@@ -34,8 +35,9 @@
                 <TextView
                     android:id="@+id/name_textview"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="MCDC Purok 18 Covered Court" />
@@ -43,8 +45,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/status_cardview"
                     android:layout_width="wrap_content"
-                    android:layout_marginStart="4dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/light_gray"
                     app:cardCornerRadius="6dp"
                     app:contentPadding="8dp"
@@ -58,6 +60,7 @@
                         android:drawablePadding="6dp"
                         android:gravity="center"
                         android:textAllCaps="true"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:drawableStartCompat="@drawable/baseline_circle_18"
@@ -74,55 +77,9 @@
 
 
                 <LinearLayout
-                    android:id="@+id/in_charge_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="In-Charge:"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/in_charge_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:textSize="14sp"
-                        tools:text="Juan Mercado" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/in_charge_contact_num_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/in_charge_linearlayout"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Contact Number:"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/in_charge_contact_num_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:textSize="14sp"
-                        tools:text="09123456789" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/address_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/in_charge_contact_num_linearlayout"
                     android:layout_marginBottom="4dp"
                     android:orientation="horizontal">
 
@@ -130,6 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Address:"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -138,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:lineSpacingExtra="4dp"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         tools:text="Asia 1, Kapayapaan Ville, Calamba, Laguna" />
                 </LinearLayout>
@@ -153,6 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Occupant/s:"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -161,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:lineSpacingExtra="4dp"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         tools:text="CANGOLF, Balagbag Araw, Silangan, Mangumit " />
                 </LinearLayout>

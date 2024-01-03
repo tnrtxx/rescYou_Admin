@@ -126,16 +126,12 @@ class EvacuationCenterAdd : AppCompatActivity() {
 
     private fun saveEvacuationCenter() {
         val nameInput = binding.nameTextInput.text.toString().trim()
-        val inChargeInput = binding.inChargeTextInput.text.toString().trim()
-        val contactNumInput = binding.inChargeContactNumTextInput.text.toString().trim()
         val occupantsInput = binding.occupantsTextInput.text.toString().trim()
         val statusSelected = binding.statusDropdown.text.toString().trim()
 
         // Check if the input fields are valid
         if (isValidInput(
                 nameInput to binding.nameTextInput,
-                inChargeInput to binding.inChargeTextInput,
-                contactNumInput to binding.inChargeContactNumTextInput,
                 occupantsInput to binding.occupantsTextInput,
                 statusSelected to binding.statusDropdown
             )
@@ -160,7 +156,7 @@ class EvacuationCenterAdd : AppCompatActivity() {
                             val evacuationCenterData = EvacuationCenterData(
                                 // !! Make sure that they are sorted in the same order as the constructor of EvacuationCenterData (data class/model) !!
                                 evacuationCenterId, placeId, name, address, latitude, longitude,
-                                statusSelected, inChargeInput, contactNumInput, occupantsInput
+                                statusSelected, occupantsInput
                             )
 
                             databaseReference.child(evacuationCenterId!!).setValue(evacuationCenterData)
@@ -187,8 +183,6 @@ class EvacuationCenterAdd : AppCompatActivity() {
 
     private fun clearInputFields() {
         binding.nameTextInput.text.clear()
-        binding.inChargeTextInput.text?.clear()
-        binding.inChargeContactNumTextInput.text?.clear()
         binding.occupantsTextInput.text?.clear()
         binding.statusDropdown.text.clear()
     }
@@ -237,7 +231,6 @@ class EvacuationCenterAdd : AppCompatActivity() {
     }
 
 }
-
 
 
 
