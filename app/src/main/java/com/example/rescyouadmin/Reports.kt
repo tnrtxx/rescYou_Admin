@@ -32,6 +32,12 @@ class Reports : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //PER DISTRICT TOTAL BUTTON
+        binding.perdisasterButton.setOnClickListener {
+            val intent = Intent(this, PerDisasterTotal::class.java)
+            startActivity(intent)
+        }
+
 
         //BOTTOM NAV VIEW
         // Initialize and assign variable
