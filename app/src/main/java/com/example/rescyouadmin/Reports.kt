@@ -38,6 +38,12 @@ class Reports : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //SUMMARY BUTTON
+        binding.summaryButton.setOnClickListener {
+            val intent = Intent(this, Summary::class.java)
+            startActivity(intent)
+        }
+
 
         //BOTTOM NAV VIEW
         // Initialize and assign variable

@@ -40,6 +40,9 @@
         android:theme="@style/Theme.RescYouAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".Summary"
+            android:exported="false" />
+        <activity
             android:name=".PerDisasterTotal"
             android:exported="false" />
         <activity

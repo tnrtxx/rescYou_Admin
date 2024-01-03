@@ -190,4 +190,8 @@
     <string name="current_desc">Description:</string>
 
 
+    <!--SUMMARY-->
+
+    <string name="all_pins">All Pins</string>
+
 </resources>
