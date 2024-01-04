@@ -8,7 +8,10 @@
     android:layout_marginTop="24dp"
     android:layout_marginRight="24dp"
     android:elevation="12dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +41,10 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="PNP Calamba" />
+                    tools:text="PNP Calamba"
+                    android:textColor="@color/black"
+
+                    />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/container_cardview"
@@ -68,7 +74,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Contact Number:"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/data_phone_textview"
@@ -76,7 +85,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
-                        tools:text="(049) 545-1694" />
+                        tools:text="(049) 545-1694"
+                        android:textColor="@color/black"
+
+                        />
                 </LinearLayout>
             </RelativeLayout>
 

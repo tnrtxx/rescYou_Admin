@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rescyouadmin.databinding.ActivityEvacuationCenterEditBinding
 import com.google.android.gms.maps.model.LatLng
@@ -83,15 +84,25 @@ class EvacuationCenterEdit : AppCompatActivity() {
         setupStatusDropdown()                   // Setup Status Dropdown
 
         binding.updateEvacuationCenterButton.setOnClickListener {
-            updateEvacuationCenter() // Update the evacuation center to the database
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to update the evacuation center?")
+                .setPositiveButton("Yes") { _, _ ->
+                    updateEvacuationCenter() // Update the evacuation center to the database
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         binding.backButton.setOnClickListener {
-            finish() // Finish the activity
-        }
-
-        binding.cancelEvacuationCenterButton.setOnClickListener {
-            finish() // Finish the activity
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to go back?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Finish the activity
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 

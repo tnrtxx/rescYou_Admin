@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.android.material.textfield.TextInputLayout
@@ -25,16 +26,36 @@ class HotlineAdd : AppCompatActivity() {
 
         // BACK BUTTON
         backButton.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to go back?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity on cancel
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         saveButton.setOnClickListener {
-            addHotline()
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to save?")
+                .setPositiveButton("Yes") { _, _ ->
+                    addHotline()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         cancelButton.setOnClickListener {
-            finish() // Close the activity on cancel
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity on cancel
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 

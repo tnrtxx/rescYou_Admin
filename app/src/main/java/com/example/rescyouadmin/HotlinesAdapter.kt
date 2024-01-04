@@ -56,6 +56,15 @@ class HotlinesAdapter(private val hotlinesList: MutableList<HotlinesDataClass>) 
         holder.deleteButton.setOnClickListener {
             showDeleteConfirmationDialog(holder.itemView.context, position, currentItem.key)
         }
+
+        // Add bottom margin to the last item
+        // This will avoid the last item from being hidden by the fab
+        val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
+        if (position == itemCount - 1) {
+            layoutParams.bottomMargin = holder.itemView.context.resources.getDimensionPixelSize(R.dimen.margin_bottom_last_item)
+        } else {
+            layoutParams.bottomMargin = 0
+        }
     }
 
     override fun getItemCount(): Int {

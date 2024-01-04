@@ -175,7 +175,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
         builder.setMessage("Are you sure you want to edit?")
         builder.setPositiveButton("Yes") { _, _ ->
             isEditing = !isEditing
-            setEditableFields(isEditing)
+            setEditableFields(true)
 
             // Show the addPhoto_Button when the Edit button is clicked
             binding.addPhotoButton.visibility = View.VISIBLE
@@ -205,9 +205,6 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
 
         // Show the progress dialog
         showLoadingDialog()
-
-        // Update the imageUrl with the temporary URL
-        imageUrl = tempImageUrl
 
 
         updatedDescription = replaceNewlinesBack(updatedDescription)
@@ -402,7 +399,10 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
                 ref.downloadUrl.addOnSuccessListener {
                     tempImageUrl = it.toString()  // Store URL in temp variable
                     Glide.with(this).load(tempImageUrl).into(disasterImage)
+                    // Update the imageUrl with the temporary URL
+                    imageUrl = tempImageUrl
                     dismissLoadingDialog()
+
                 }
             }
             .addOnFailureListener {

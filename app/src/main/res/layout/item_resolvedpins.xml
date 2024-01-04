@@ -8,7 +8,9 @@
     android:layout_marginTop="24dp"
     android:layout_marginRight="24dp"
     android:elevation="12dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+  android:backgroundTint="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +41,10 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="MCDC Purok 18 Covered Court" />
+                    tools:text="MCDC Purok 18 Covered Court"
+                    android:textColor="@color/black"
+
+                    />
 
 
             </LinearLayout>
@@ -64,7 +69,10 @@
                         android:layout_height="wrap_content"
                         android:text="Last updated:"
                         android:textStyle="italic"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/time_textview"
@@ -73,7 +81,10 @@
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
                         tools:text="11:00 PM"
-                        android:textStyle="italic"/>
+                        android:textStyle="italic"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/date_textview"
@@ -82,7 +93,10 @@
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
                         tools:text="12-20-2023"
-                        android:textStyle="italic"/>
+                        android:textStyle="italic"
+                        android:textColor="@color/black"
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -97,7 +111,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rescued_by"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/rescued_by_textview"
@@ -105,7 +122,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
-                        tools:text="Juan Mercado" />
+                        tools:text="Juan Mercado"
+                        android:textColor="@color/black"
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,7 +140,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ratings_situation"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/ratings_textview"
@@ -128,7 +151,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
-                        tools:text="Catastrophic" />
+                        tools:text="Catastrophic"
+
+                        android:textColor="@color/black"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -143,7 +169,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/disaster"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/disaster_textview"
@@ -152,7 +181,10 @@
                         android:layout_marginStart="4dp"
                         android:lineSpacingExtra="4dp"
                         android:textSize="14sp"
-                        tools:text="Natural disaster" />
+                        tools:text="Natural disaster"
+                        android:textColor="@color/black"
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +198,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/current_sitio"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/sitio_textview"
@@ -175,7 +210,10 @@
                         android:layout_marginStart="4dp"
                         android:lineSpacingExtra="4dp"
                         android:textSize="14sp"
-                        tools:text="Asia 1" />
+                        tools:text="Asia 1"
+                        android:textColor="@color/black"
+
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,7 +227,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/current_desc"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+
+                        />
 
                     <TextView
                         android:id="@+id/description_textview"
@@ -198,6 +239,7 @@
                         android:layout_marginStart="4dp"
                         android:lineSpacingExtra="4dp"
                         android:textSize="14sp"
+                        android:textColor="@color/black"
                         tools:text="CANGOLF, Balagbag Araw, Silangan, Mangumit " />
 
 

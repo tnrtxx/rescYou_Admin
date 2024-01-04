@@ -8,7 +8,9 @@
     android:layout_marginTop="24dp"
     android:layout_marginRight="24dp"
     android:elevation="12dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:backgroundTint="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +41,11 @@
                     android:layout_height="wrap_content"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    tools:text="MCDC Purok 18 Covered Court" />
+                    tools:text="MCDC Purok 18 Covered Court"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+
+                    />
 
 
             </LinearLayout>
@@ -62,7 +68,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Total: "
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/black"
+                        />
 
                     <TextView
                         android:id="@+id/perdisaster_total_textview"
@@ -70,7 +79,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:textSize="14sp"
-                        tools:text="Juan Mercado" />
+                        tools:text="Juan Mercado"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/black"
+                        />
                 </LinearLayout>
 
             </RelativeLayout>

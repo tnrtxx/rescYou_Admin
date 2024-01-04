@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TermsAndConditions">
+    tools:context=".TermsAndConditions"
+    android:background="@color/white"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,6 +67,7 @@
                 android:text="@string/termsAncConditions_content"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 >
 
             </TextView>

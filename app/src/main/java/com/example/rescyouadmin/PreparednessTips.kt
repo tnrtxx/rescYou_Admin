@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rescyouadmin.databinding.ActivityPreparednessTipsBinding
@@ -34,8 +35,7 @@ class PreparednessTips : AppCompatActivity() {
 
         //BACK BUTTON
         binding.backButton.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            finish() // Close the activity on cancel
         }
 
         recyclerView= findViewById(R.id.tips_recyclerView)

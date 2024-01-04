@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputLayout
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class HotlinesEdit : AppCompatActivity() {
 
@@ -40,19 +41,37 @@ class HotlinesEdit : AppCompatActivity() {
         val backButton: ImageView = findViewById(R.id.back_button)
 
 
-        // BACK BUTTON
         backButton.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to go back?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
-
         saveButton.setOnClickListener {
-            editHotline()
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to save the changes?")
+                .setPositiveButton("Yes") { _, _ ->
+                    editHotline()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         cancelButton.setOnClickListener {
-            finish()
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 

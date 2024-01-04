@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rescyouadmin.databinding.ActivityEvacuationCenterAddBinding
 import com.google.android.gms.maps.model.LatLng
@@ -59,15 +60,36 @@ class EvacuationCenterAdd : AppCompatActivity() {
 
     private fun initializeUI() {
         binding.saveEvacuationCenterButton.setOnClickListener {
-            saveEvacuationCenter() // Save the evacuation center to the database
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to save the evacuation center?")
+                .setPositiveButton("Yes") { _, _ ->
+                    saveEvacuationCenter() // Save the evacuation center to the database
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         binding.backButton.setOnClickListener {
-            finish() // Close the activity
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         binding.cancelEvacuationCenterButton.setOnClickListener {
-            finish() // Close the activity
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes") { _, _ ->
+                    finish() // Close the activity
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         setupPlacesAutocomplete() // Setup Places Autocomplete

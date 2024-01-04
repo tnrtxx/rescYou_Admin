@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.rescyouadmin.databinding.ActivityProfileBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,7 +53,14 @@ class Profile : AppCompatActivity() {
         })
 
         binding.signOutButton.setOnClickListener {
-            signOut()
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to sign out?")
+                .setPositiveButton("Yes") { _, _ ->
+                    signOut()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         //BOTTOM NAV VIEW

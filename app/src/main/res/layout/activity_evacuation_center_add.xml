@@ -77,14 +77,20 @@
             android:id="@+id/occupantsTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
+            android:layout_marginTop="18dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/black"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/occupantsTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/occupant_s"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/black"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +98,10 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp">
+            android:layout_marginTop="18dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/black"
+            >
 
             <AutoCompleteTextView
                 android:id="@+id/statusDropdown"
@@ -101,7 +110,10 @@
                 android:layout_weight="1"
                 android:hint="@string/status"
                 android:text="@string/available"
-                android:inputType="none" />
+                android:inputType="none"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/black"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <android.widget.Button

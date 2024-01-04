@@ -31,8 +31,7 @@ class Hotlines : AppCompatActivity() {
 
         // BACK BUTTON
         binding.backButton.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            finish()
         }
 
         // FAB BUTTON (Add New)
