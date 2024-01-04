@@ -19,4 +19,11 @@ data class DataClass(
         dataDesc = dataDesc?.replace("\\'", "\'")
         dataTitle = dataTitle?.replace("\\n", "\n")
     }
+
+    // Function to replace "\n" with "\\n" in dataDesc
+    fun replaceNewlinesBack() {
+        dataDesc = dataDesc?.replace("\n", "\\n")
+        dataDesc = dataDesc?.replace("\'", "\\'")
+        dataTitle = dataTitle?.replace("\n", "\\n")
+    }
 }

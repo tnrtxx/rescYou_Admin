@@ -15,50 +15,27 @@ class DisasterAdapter(private val context: Context, private var dataList: List<D
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        //CARDVIEW
-        val recCard: CardView = itemView.findViewById(R.id.disaster_cardView)
-
-        // ICON OF THE DISASTER
-        val recImageIcon: ImageView = itemView.findViewById(R.id.disasterIcon_imageView)
-
-        // IMAGE OF THE DISASTER
-        val recImage: ImageView = itemView.findViewById(R.id.disaster_imageView)
 
         //TITLE OR DISASTER NAME/CATEGORY
         val recTitle: TextView = itemView.findViewById(R.id.disaster_category)
 
-        //DISASTER TIPS DESCRIPTION
-        val recDesc: TextView = itemView.findViewById(R.id.disaster_desc)
-
-        // SOURCES
-        val recImageSource: TextView = itemView.findViewById(R.id.disaster_imageSource)
-        val recArticleSource: TextView = itemView.findViewById(R.id.disaster_articleSource)
+        //BUTTON
+        val editButton : TextView = itemView.findViewById(R.id.editDisasterButton)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_tips, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_per_disaster_tips, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        //PHOTO OR ICON
-        Glide.with(context).load(dataList[position].dataImageIcon).into(holder.recImageIcon)
-        Glide.with(context).load(dataList[position].dataImage).into(holder.recImage)
-
-
         //TEXT
         holder.recTitle.text = dataList[position].dataTitle
-        holder.recDesc.text = dataList[position].dataDesc
 
-        //SOURCES
-        holder.recImageSource.text = dataList[position].dataImageSource
-        holder.recArticleSource.text = dataList[position].dataArticleSource
-
-
-
-        holder.recCard.setOnClickListener {
-            val intent = Intent(context, PerDisaster::class.java)
+        //BUTTON
+        holder.editButton.setOnClickListener {
+            val intent = Intent(context, EdiDisasterCategory::class.java)
             intent.putExtra("Image", dataList[holder.adapterPosition].dataImage)
             intent.putExtra("Title", dataList[holder.adapterPosition].dataTitle)
             intent.putExtra("Description", dataList[holder.adapterPosition].dataDesc)
@@ -67,6 +44,15 @@ class DisasterAdapter(private val context: Context, private var dataList: List<D
             intent.putExtra("Article Source", dataList[holder.adapterPosition].dataArticleSource)
 
             context.startActivity(intent)
+        }
+
+        // Add bottom margin to the last item
+        // This will avoid the last item from being hidden by the fab
+        val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
+        if (position == itemCount - 1) {
+            layoutParams.bottomMargin = holder.itemView.context.resources.getDimensionPixelSize(R.dimen.margin_bottom_last_item_smaller)
+        } else {
+            layoutParams.bottomMargin = 0
         }
     }
 

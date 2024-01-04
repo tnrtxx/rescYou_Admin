@@ -3,6 +3,7 @@ package com.example.rescyouadmin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rescyouadmin.databinding.ActivityPreparednessTipsBinding
@@ -41,7 +42,7 @@ class PreparednessTips : AppCompatActivity() {
         dataList = mutableListOf() // Initialize dataList here
 
 
-        val gridLayoutManager = GridLayoutManager(this, 2)
+        val gridLayoutManager = GridLayoutManager(this, 1)
         this.recyclerView.layoutManager = gridLayoutManager
 
         adapter = DisasterAdapter(this, dataList)
@@ -58,15 +59,18 @@ class PreparednessTips : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataList.clear()
                 for (itemSnapshot in snapshot.children) {
-                    val dataClass = itemSnapshot.getValue(DataClass::class.java)
-                    if (dataClass != null) {
-                        dataClass.replaceNewlines()
+                    try {
+                        val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                        if (dataClass != null) {
+                            dataClass.replaceNewlines()
+                        }
+                        dataClass?.key = itemSnapshot.key
+                        dataClass?.let { dataList.add(it) }
+                    } catch (e: Exception) {
+                        Log.e("Firebase", "Error: ", e)
                     }
-                    dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(it) }
                 }
                 adapter.notifyDataSetChanged()
-
             }
 
             override fun onCancelled(error: DatabaseError) {
