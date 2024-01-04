@@ -69,6 +69,15 @@
             android:name=".EvacuationCenters"
             android:exported="false" />
         <activity
+            android:name=".Hotlines"
+            android:exported="false"/>
+        <activity
+            android:name=".HotlineAdd"
+            android:exported="false" />
+        <activity
+            android:name=".HotlinesEdit"
+            android:exported="false" />
+        <activity
             android:name=".PerDisaster"
             android:exported="false" />
         <activity

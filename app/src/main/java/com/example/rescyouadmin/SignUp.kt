@@ -1,13 +1,26 @@
 package com.example.rescyouadmin
 
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
+import android.view.Gravity
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.rescyouadmin.databinding.ActivitySignUpBinding
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -49,12 +62,13 @@ class SignUp : AppCompatActivity(){
 
     //for FirebaseAuth (SIGN UP/REGISTRATION OF USER)
     private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient : GoogleSignInClient
 
     private lateinit var userID: String
 
 
     //Pssword matcher
-    val passwordPattern = "^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
+    val passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$"
     val passwordMatcher = Regex(passwordPattern)
 
 
@@ -89,12 +103,13 @@ class SignUp : AppCompatActivity(){
             } else if (checkEmail(email) == false) {
                 Toast.makeText(applicationContext, "Invalid Email", Toast.LENGTH_SHORT).show()
 
-            } else if (!passwordMatcher.matches(password.trim())) {
-                Toast.makeText(
-                    applicationContext,
-                    "Password should be at least 6 characters, with at least 1 uppercase and 1 lowercase letter.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            }else if (!passwordMatcher.matches(password.trim())) {
+                AlertDialog.Builder(this)
+                    .setMessage("Password should be at least 6 characters, with at least 1 uppercase, 1 lowercase letter and a special character.")
+                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
 
             } else if (checkEmail(email) == false && password.trim().length < 6) {
                 Toast.makeText(
@@ -156,50 +171,101 @@ class SignUp : AppCompatActivity(){
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(ContentValues.TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    userID = user?.uid.toString()
-
-//                    //Set the display name of the user
-//                    val profileUpdates =
-//                        com.google.firebase.auth.UserProfileChangeRequest.Builder()
-//                            .setDisplayName(displayName)
-//                            .build()
-//
-//                    user?.updateProfile(profileUpdates)
-//                        ?.addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                Log.d(ContentValues.TAG, "User profile updated.")
-//                            }
-//                        }
-
-                    updateUI(user)
-
-
-                    storeData(
-                        userID,
-                        bqrt_id,
-                        email,
-                    )
-
-
-                    val intent = Intent(this, Home::class.java)
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    Toast.makeText(applicationContext, userID, Toast.LENGTH_SHORT).show()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
+                    showTermsAndConditions()
+                }else
+                {
                     Toast.makeText(
-                        baseContext,
-                        "Email already exists.",
-                        Toast.LENGTH_SHORT,
+                        baseContext, "Sign Up failed. Please try again.",
+                        Toast.LENGTH_SHORT
                     ).show()
-                    updateUI(null)
                 }
             }
+    }
+
+    private fun showTermsAndConditions() {
+        val dialog = Dialog(this@SignUp)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.activity_terms_and_conditions)
+
+        // Find the TextView in the dialog
+        val termsTextView = dialog.findViewById<TextView>(R.id.TC_content)
+        var termsAndConditions = getString(R.string.termsAncConditions_content)
+        termsAndConditions = termsAndConditions.replace("\n", "<br/>").replace(" ", "&nbsp;")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            termsTextView.text = Html.fromHtml(termsAndConditions, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            termsTextView.text = Html.fromHtml(termsAndConditions)
+        }
+
+        if (!isFinishing) {
+            dialog.show()
+        }
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.rgb(241, 242, 242)))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+
+
+
+        // SIGN UP
+        // Sign in success, update UI with the signed-in user's information
+        Log.d(ContentValues.TAG, "createUserWithEmail:success")
+        val user = auth.currentUser
+        userID = user?.uid.toString()
+
+
+
+        //AGREE BUTTON
+        val agreeButton = dialog.findViewById<Button>(R.id.agreeButton)
+        agreeButton.setOnClickListener {
+            val checkBox = dialog.findViewById<CheckBox>(R.id.acceptCheckbox)
+            if (checkBox.isChecked) {
+
+                // Sign in success, update UI with the signed-in user's information
+                Log.d(TAG, "createUserWithEmail:success")
+                val user = auth.currentUser
+                userID= user?.uid.toString()
+
+
+                updateUI(user)
+                storeData(
+                    userID,
+                    bqrt_id,
+                    email,
+                )
+                val intent = Intent(this, Home::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                dialog.dismiss()
+
+            } else {
+                Toast.makeText(this, "Please agree to the terms and conditions.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        //DISAGREE BUTTON
+        val declineButton = dialog.findViewById<Button>(R.id.declineButton)
+        declineButton.setOnClickListener {
+            // Get the current user
+            val user = auth.currentUser
+            user?.delete()?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(MainActivity.TAG, "User account deleted.")
+                }
+            }
+
+            // Sign out from Google
+            googleSignInClient.signOut().addOnCompleteListener {
+                // After sign out is completed, navigate back to MainActivity
+                val intent = Intent(this@SignUp, MainActivity::class.java) // Create the Intent object
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent) // Use the Intent object to start the MainActivity
+            }
+        }
     }
 
     //Email Address Pattern

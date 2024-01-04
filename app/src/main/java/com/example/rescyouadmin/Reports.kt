@@ -65,12 +65,16 @@ class Reports : AppCompatActivity() {
 //                Toast.makeText(applicationContext, "information", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
+                finish()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.reports -> {
-//                Toast.makeText(applicationContext, "information", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Reports::class.java)
-                startActivity(intent)
+                if (this !is Reports) {
+                    val intent = Intent(this, Reports::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -79,6 +83,7 @@ class Reports : AppCompatActivity() {
 //                Toast.makeText(applicationContext, "profile", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Profile::class.java)
                 startActivity(intent)
+                finish()
                 return@OnNavigationItemSelectedListener true
 
 

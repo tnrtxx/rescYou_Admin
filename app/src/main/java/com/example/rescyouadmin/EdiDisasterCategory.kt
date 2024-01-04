@@ -163,7 +163,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
         builder.setTitle("Confirm Save")
         builder.setMessage("Are you sure you want to save?")
         builder.setPositiveButton("Yes") { _, _ ->
-            saveUpdatedValues()
+            checkInputsAndShowToast()
         }
         builder.setNegativeButton("No") { _, _ -> }
         builder.show()
@@ -179,6 +179,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
 
             // Show the addPhoto_Button when the Edit button is clicked
             binding.addPhotoButton.visibility = View.VISIBLE
+            binding.editButton.visibility = View.GONE
         }
         builder.setNegativeButton("No") { _, _ -> }
         builder.show()
@@ -194,6 +195,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
 
     // Function to save updated values to Firebase
     private fun saveUpdatedValues() {
+
         var updatedDescription = disasterDesc.text.toString()
         var updatedTitle = disasterTitle.text.toString()
         var updatedImageSource = disasterImageSource.text.toString()
@@ -230,6 +232,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
                     setEditableFields(false)
                     // Hide the addPhoto_Button after updating the database
                     binding.addPhotoButton.visibility = View.GONE
+                    binding.editButton.visibility = View.VISIBLE
                 } else {
                     Toast.makeText(this, "Failed to update data.", Toast.LENGTH_SHORT).show()
                 }
@@ -241,6 +244,19 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
         var result = input.replace("\n", "\\n")
         result = result.replace("\'", "\\'")
         return result
+    }
+
+    private fun checkInputsAndShowToast() {
+        if (disasterDesc.text.toString().trim().isEmpty() ||
+            disasterTitle.text.toString().trim().isEmpty() ||
+            disasterImageSource.text.toString().trim().isEmpty() ||
+            disasterArticleSource.text.toString().trim().isEmpty()) {
+
+            Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_SHORT).show()
+        }else{
+            saveUpdatedValues()
+            Toast.makeText(this, "Successfully updated.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     //PROGRESS DIALOG

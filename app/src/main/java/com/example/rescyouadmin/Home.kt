@@ -24,7 +24,7 @@ class Home : AppCompatActivity() {
 
         //Hotlines
         binding.hotlinesButton.setOnClickListener {
-//            val intent = Intent(this, Hotlines::class.java)
+            val intent = Intent(this, Hotlines::class.java)
             startActivity(intent)
         }
 
@@ -41,7 +41,6 @@ class Home : AppCompatActivity() {
 
         // Initialize and assign variable
         val selectedItem = bottomNavigationView.selectedItemId
-        // Toast.makeText(applicationContext, selectedItem.toString(), Toast.LENGTH_SHORT).show()
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navBarWhenClicked)
     }
@@ -51,24 +50,27 @@ class Home : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.info -> {
-//                Toast.makeText(applicationContext, "information", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Home::class.java)
-                startActivity(intent)
+                if (this !is Home) {
+                    val intent = Intent(this, Home::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.reports -> {
-//                Toast.makeText(applicationContext, "information", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Reports::class.java)
                 startActivity(intent)
+                finish()  // Finish the current activity
                 return@OnNavigationItemSelectedListener true
             }
 
 
             R.id.profile -> {
-//                Toast.makeText(applicationContext, "profile", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Profile::class.java)
                 startActivity(intent)
+                finish()  // Finish the current activity
                 return@OnNavigationItemSelectedListener true
 
 
