@@ -48,6 +48,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hotlines_recyclerView"
         android:layout_width="match_parent"
