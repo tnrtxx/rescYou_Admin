@@ -99,7 +99,22 @@ class EvacuationCenterEdit : AppCompatActivity() {
                 .setTitle("Confirmation")
                 .setMessage("Are you sure you want to go back?")
                 .setPositiveButton("Yes") { _, _ ->
-                    finish() // Finish the activity
+                    val intent = Intent(this, EvacuationCenters::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
+
+        binding.cancelEvacuationCenterButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("Yes") { _, _ ->
+                    val intent = Intent(this, EvacuationCenters::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 .setNegativeButton("No", null)
                 .show()
@@ -267,6 +282,18 @@ class EvacuationCenterEdit : AppCompatActivity() {
             TAG,
             "Place Id: $updatedPlaceId, Name: $updatedName, Status: $updatedStatus, Occupants: $updatedOccupants, Address: $updatedAddress, Latitude: $updatedLatitude, Longitude: $updatedLongitude"
         )
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Create an Intent to redirect to your desired activity
+        val intent = Intent(this, EvacuationCenters::class.java)
+
+        // Start the new activity
+        startActivity(intent)
+
+        // Finish the current activity to prevent going back to it when pressing back
+        finish()
     }
 
 }

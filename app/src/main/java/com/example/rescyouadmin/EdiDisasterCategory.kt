@@ -82,6 +82,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
         binding.backButton.setOnClickListener {
             val intent = Intent(this, PreparednessTips::class.java)
             startActivity(intent)
+            finish()
         }
 
         //INITIALIZE THE VARIABLES
@@ -107,10 +108,11 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
             Glide.with(this).load(bundle.getString("Image")).into(disasterImage)
 
             // Set the fields to disabled initially
-            setEditableFields(false)
+            setEditableFields(true)
 
             // Hide the addPhoto_Button initially
-            binding.addPhotoButton.visibility = View.GONE
+            binding.addPhotoButton.visibility = View.VISIBLE
+            binding.editButton.visibility = View.GONE
         }
 
         //ADD PHOTO
@@ -153,6 +155,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
         builder.setPositiveButton("Yes") { _, _ ->
             val intent = Intent(this, PreparednessTips::class.java)
             startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("No") { _, _ -> }
         builder.show()
@@ -180,6 +183,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
             // Show the addPhoto_Button when the Edit button is clicked
             binding.addPhotoButton.visibility = View.VISIBLE
             binding.editButton.visibility = View.GONE
+            binding.saveButton.visibility = View.VISIBLE
         }
         builder.setNegativeButton("No") { _, _ -> }
         builder.show()
@@ -230,6 +234,7 @@ class EdiDisasterCategory : AppCompatActivity(), EasyPermissions.PermissionCallb
                     // Hide the addPhoto_Button after updating the database
                     binding.addPhotoButton.visibility = View.GONE
                     binding.editButton.visibility = View.VISIBLE
+                    binding.saveButton.visibility = View.GONE
                 } else {
                     Toast.makeText(this, "Failed to update data.", Toast.LENGTH_SHORT).show()
                 }

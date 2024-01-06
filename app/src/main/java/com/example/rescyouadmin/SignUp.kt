@@ -90,7 +90,6 @@ class SignUp : AppCompatActivity(){
             email = binding.emailTextInput.text.toString()
             password = binding.passwordTextInput.text.toString()
             bqrt_id= binding.bqrtTextInput.text.toString()
-            Toast.makeText(applicationContext, bqrt_id, Toast.LENGTH_SHORT).show()
 
 
 //            Check for the required values
@@ -156,7 +155,6 @@ class SignUp : AppCompatActivity(){
 
     private fun checkIfBQRTExists() {
         if (bqrtList.contains(bqrt_id)) {
-//            Toast.makeText(applicationContext, "exists", Toast.LENGTH_SHORT).show()
             Log.d(TAG, "bqrt_id exists in the list")
             signUpUser()
 
@@ -341,7 +339,6 @@ class SignUp : AppCompatActivity(){
 
             // Log and toast
             Log.d(ContentValues.TAG, token)
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
 
             // Save the FCM token to Firebase
             saveFcmTokenToFirebase(token)

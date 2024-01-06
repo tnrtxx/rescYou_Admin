@@ -18,30 +18,35 @@ class Reports : AppCompatActivity() {
         binding.allpinsButton.setOnClickListener {
             val intent = Intent(this, ShowAllPins::class.java)
             startActivity(intent)
+            finish()
         }
 
         //RESOLVED PINS BUTTON
         binding.resolvedpinsButton.setOnClickListener {
             val intent = Intent(this, ResolvedPins::class.java)
             startActivity(intent)
+            finish()
         }
 
         //PER SITIO TOTAL BUTTON
         binding.persitioButton.setOnClickListener {
             val intent = Intent(this, PerSitioTotal::class.java)
             startActivity(intent)
+            finish()
         }
 
         //PER DISTRICT TOTAL BUTTON
         binding.perdisasterButton.setOnClickListener {
             val intent = Intent(this, PerDisasterTotal::class.java)
             startActivity(intent)
+            finish()
         }
 
         //SUMMARY BUTTON
         binding.summaryButton.setOnClickListener {
             val intent = Intent(this, Summary::class.java)
             startActivity(intent)
+            finish()
         }
 
 

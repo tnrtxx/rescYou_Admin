@@ -53,6 +53,8 @@ class EvacuationCenters : AppCompatActivity() {
 
         // Back Button: Navigate to the Home activity
         binding.backButton.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -60,6 +62,7 @@ class EvacuationCenters : AppCompatActivity() {
         binding.fabAddEvacuationCenter.setOnClickListener {
             val intent = Intent(this, EvacuationCenterAdd::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -103,5 +106,17 @@ class EvacuationCenters : AppCompatActivity() {
                 Log.e(TAG, "Database operation cancelled: ${error.message}")
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Create an Intent to redirect to your desired activity
+        val intent = Intent(this, Home::class.java)
+
+        // Start the new activity
+        startActivity(intent)
+
+        // Finish the current activity to prevent going back to it when pressing back
+        finish()
     }
 }

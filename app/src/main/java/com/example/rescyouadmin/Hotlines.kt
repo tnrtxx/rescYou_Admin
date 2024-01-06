@@ -31,6 +31,8 @@ class Hotlines : AppCompatActivity() {
 
         // BACK BUTTON
         binding.backButton.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -38,6 +40,7 @@ class Hotlines : AppCompatActivity() {
         binding.fabAddHotline.setOnClickListener {
             val intent = Intent(this, HotlineAdd::class.java)
             startActivity(intent)
+            finish()
         }
 
         recyclerView = findViewById(R.id.hotlines_recyclerView)
@@ -71,5 +74,17 @@ class Hotlines : AppCompatActivity() {
                 // Handle onCancelled event
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Create an Intent to redirect to your desired activity
+        val intent = Intent(this, Home::class.java)
+
+        // Start the new activity
+        startActivity(intent)
+
+        // Finish the current activity to prevent going back to it when pressing back
+        finish()
     }
 }

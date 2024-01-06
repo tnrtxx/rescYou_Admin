@@ -35,7 +35,9 @@ class PreparednessTips : AppCompatActivity() {
 
         //BACK BUTTON
         binding.backButton.setOnClickListener {
-            finish() // Close the activity on cancel
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
         }
 
         recyclerView= findViewById(R.id.tips_recyclerView)
@@ -78,5 +80,17 @@ class PreparednessTips : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Create an Intent to redirect to your desired activity
+        val intent = Intent(this, Home::class.java)
+
+        // Start the new activity
+        startActivity(intent)
+
+        // Finish the current activity to prevent going back to it when pressing back
+        finish()
     }
 }

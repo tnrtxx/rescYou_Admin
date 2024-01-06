@@ -32,6 +32,8 @@ class PerDisasterTotal : AppCompatActivity() {
 
         // BACK BUTTON
         binding.backButton.setOnClickListener {
+            val intent = Intent(this, Reports::class.java)
+            startActivity(intent)
             finish()
         }
 

@@ -76,13 +76,10 @@ class Profile : AppCompatActivity() {
 
     private fun signOut() {
 
-        Toast.makeText(applicationContext,"signout", Toast.LENGTH_SHORT).show()
-
-
         FirebaseAuth.getInstance().signOut()
         val i  = Intent(this,MainActivity::class.java)
         startActivity(i)
-    }
+        finish()}
 
     //NAV BAR
     private val navBarWhenClicked = BottomNavigationView.OnNavigationItemSelectedListener { item ->

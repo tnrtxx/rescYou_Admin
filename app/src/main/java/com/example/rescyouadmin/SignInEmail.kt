@@ -34,6 +34,7 @@ class SignInEmail : AppCompatActivity() {
         binding.forgotPasswordTextView.setOnClickListener{
             val intent = Intent(this, ForgotPassword::class.java)
             startActivity(intent)
+            finish()
 
         }
 

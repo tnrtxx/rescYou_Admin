@@ -32,6 +32,7 @@ class PerDisaster : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             val intent = Intent(this, PreparednessTips::class.java)
             startActivity(intent)
+            finish()
         }
 
         //INITIALIZE THE VARIABLES

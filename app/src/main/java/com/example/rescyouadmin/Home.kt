@@ -20,18 +20,21 @@ class Home : AppCompatActivity() {
         binding.tipsButton.setOnClickListener {
             val intent = Intent(this, PreparednessTips::class.java)
             startActivity(intent)
+            finish()
         }
 
         //Hotlines
         binding.hotlinesButton.setOnClickListener {
             val intent = Intent(this, Hotlines::class.java)
             startActivity(intent)
+            finish()
         }
 
         //Evacuation Centers
         binding.centersButton.setOnClickListener {
             val intent = Intent(this, EvacuationCenters::class.java)
             startActivity(intent)
+            finish()
         }
 
         //BOTTOM NAV VIEW

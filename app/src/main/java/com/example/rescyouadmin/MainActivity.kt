@@ -79,12 +79,14 @@ class MainActivity : AppCompatActivity() {
         binding.signUpButton.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
+            finish()
         }
 
         //SIGN IN VIA EMAIL
         binding.signInEmailButton.setOnClickListener {
             val intent = Intent(this, SignInEmail::class.java)
             startActivity(intent)
+            finish()
         }
 
 
