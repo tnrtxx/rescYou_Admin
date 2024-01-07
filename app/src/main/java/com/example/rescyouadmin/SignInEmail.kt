@@ -63,7 +63,7 @@ class SignInEmail : AppCompatActivity() {
                             startActivity(intent)
                             Toast.makeText(
                                 applicationContext,
-                                "sign in success",
+                                "Sign in successfully.",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
