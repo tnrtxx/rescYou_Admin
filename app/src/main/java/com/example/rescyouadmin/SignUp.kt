@@ -165,19 +165,9 @@ class SignUp : AppCompatActivity(){
     }
 
     private fun signUpUser() {
-        //SIGN UP THE USER
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    showTermsAndConditions()
-                }else
-                {
-                    Toast.makeText(
-                        baseContext, "Sign Up failed. Please try again.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+
+        showTermsAndConditions()
+
     }
 
     private fun showTermsAndConditions() {
@@ -208,13 +198,6 @@ class SignUp : AppCompatActivity(){
 
 
 
-        // SIGN UP
-        // Sign in success, update UI with the signed-in user's information
-        Log.d(ContentValues.TAG, "createUserWithEmail:success")
-        val user = auth.currentUser
-        userID = user?.uid.toString()
-
-
 
         //AGREE BUTTON
         val agreeButton = dialog.findViewById<Button>(R.id.agreeButton)
@@ -225,22 +208,44 @@ class SignUp : AppCompatActivity(){
                     .setTitle("Confirmation")
                     .setMessage("Do you accept the terms and conditions?")
                     .setPositiveButton("Yes") { _, _ ->
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        userID= user?.uid.toString()
 
-                        updateUI(user)
-                        storeData(
-                            userID,
-                            bqrt_id,
-                            email,
-                        )
-                        val intent = Intent(this, Home::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        dialog.dismiss()
+
+
+
+
+
+                        //SIGN UP THE USER
+                        auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(this) { task ->
+                                if (task.isSuccessful) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success")
+                                    // SIGN UP
+                                    // Sign in success, update UI with the signed-in user's information
+
+                                    val user = auth.currentUser
+                                    userID= user?.uid.toString()
+
+                                    updateUI(user)
+                                    storeData(
+                                        userID,
+                                        bqrt_id,
+                                        email,
+                                    )
+                                    val intent = Intent(this, Home::class.java)
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                    dialog.dismiss()
+                                }else
+                                {
+                                    Toast.makeText(
+                                        baseContext, "Sign Up failed. Please try again.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
                     }
                     .setNegativeButton("No", null)
                     .show()
@@ -256,21 +261,10 @@ class SignUp : AppCompatActivity(){
                 .setTitle("Confirmation")
                 .setMessage("Are you sure you want to decline?")
                 .setPositiveButton("Yes") { _, _ ->
-                    // Get the current user
-                    val user = auth.currentUser
-                    user?.delete()?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(MainActivity.TAG, "User account deleted.")
-                        }
-                    }
-
-                    // Sign out from Google
-                    googleSignInClient.signOut().addOnCompleteListener {
-                        // After sign out is completed, navigate back to MainActivity
-                        val intent = Intent(this@SignUp, MainActivity::class.java) // Create the Intent object
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent) // Use the Intent object to start the MainActivity
-                    }
+                    // Navigate to Home activity if the user clicks "No"
+                    val intent = Intent(this@SignUp, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 }
                 .setNegativeButton("No", null)
                 .show()

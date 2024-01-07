@@ -76,8 +76,11 @@ class Profile : AppCompatActivity() {
 
     private fun signOut() {
 
+        Toast.makeText(applicationContext,"Sign out successfully.", Toast.LENGTH_SHORT).show()
+
         FirebaseAuth.getInstance().signOut()
         val i  = Intent(this,MainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(i)
         finish()}
 
