@@ -70,7 +70,7 @@ class EvacuationCenterAdapter(private var evacuationCenterArrayList: List<Evacua
             val builder = AlertDialog.Builder(context)
 
             builder.setTitle("Delete Evacuation Center")
-            builder.setMessage("This action cannot be undone. Are you sure you want to delete this evacuation center? ")
+            builder.setMessage("Are you sure you want to permanently delete this?")
             builder.setPositiveButton("Yes") { _, _ ->
                 val databaseReference =
                     FirebaseDatabase.getInstance().getReference("Evacuation Centers")

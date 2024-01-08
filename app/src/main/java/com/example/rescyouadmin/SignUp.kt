@@ -104,7 +104,7 @@ class SignUp : AppCompatActivity(){
 
             }else if (!passwordMatcher.matches(password.trim())) {
                 AlertDialog.Builder(this)
-                    .setMessage("Password should be at least 6 characters, with at least 1 uppercase, 1 lowercase letter and a special character.")
+                    .setMessage("Password should be at least 6 characters, with at least 1 number, 1 uppercase, 1 lowercase letter and a special character.")
                     .setPositiveButton(android.R.string.ok) { dialog, _ ->
                         dialog.dismiss()
                     }

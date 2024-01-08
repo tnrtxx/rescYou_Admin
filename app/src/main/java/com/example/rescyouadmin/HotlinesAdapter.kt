@@ -74,7 +74,7 @@ class HotlinesAdapter(private val hotlinesList: MutableList<HotlinesDataClass>) 
     private fun showDeleteConfirmationDialog(context: Context, position: Int, dataId: String?) {
         val alertDialogBuilder = AlertDialog.Builder(context)
         alertDialogBuilder.setTitle("Delete Hotline")
-        alertDialogBuilder.setMessage("Are you sure you want to delete this hotline?")
+        alertDialogBuilder.setMessage("Are you sure you want to permanently delete this?")
         alertDialogBuilder.setPositiveButton("Yes") { dialogInterface, _ ->
             deleteItem(position, dataId)
             dialogInterface.dismiss()
