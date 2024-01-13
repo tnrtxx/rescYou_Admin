@@ -29,8 +29,8 @@
                 android:background="@color/light_gray"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:backgroundTint="@color/light_gray"
-                android:paddingTop="24dp"
+                android:backgroundTint="@color/navy_blue"
+                android:paddingTop="16dp"
                 >
 
                 <TextView
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/profile"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -62,56 +62,76 @@
                 >
 
                 <!--ACCOUNT DETAILS-->
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/account_details"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="30sp"
-                    android:textStyle="bold"></TextView>
+                    android:elevation="40dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/navy_blue"
+                    android:layout_marginTop="30dp"
+                    >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="30dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BQRT ID:"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:textSize="30sp"
+                            android:layout_marginRight="10dp"
+                            ></TextView>
+                        <TextView
+                            android:id="@+id/bqrt_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1234"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:textSize="30sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        tools:text="Juan@gmail.com"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/email_icon"
+                        android:drawablePadding="10dp"
+                        ></TextView>
+
+                </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/email"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    tools:text="Juan@gmail.com"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/bqrt_id"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:id="@+id/bqrt_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    tools:text="Juan@gmail.com"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"></TextView>
+                <!--THIN LINE-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_gray"
+                    android:layout_marginTop="60dp"
+                    />
 
 
                 <android.widget.Button

@@ -15,13 +15,57 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingVertical="22dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/per_sitio_linearlayout">
+
+            <LinearLayout
+                android:id="@+id/total_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="Total: "-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:backgroundTint="@color/black"-->
+                <!--                        />-->
+
+                <TextView
+                    android:id="@+id/perdisaster_total_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textSize="30sp"
+                    tools:text="Juan Mercado"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:padding="16dp">
+            android:paddingHorizontal="16dp"
+            >
 
             <LinearLayout
                 android:id="@+id/per_sitio_linearlayout"
@@ -39,53 +83,18 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                    android:textSize="14sp"
                     tools:text="MCDC Purok 18 Covered Court"
                     android:textColor="@color/black"
                     android:backgroundTint="@color/black"
-
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     />
 
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/per_sitio_linearlayout">
 
-                <LinearLayout
-                    android:id="@+id/total_disaster_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Total: "
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:backgroundTint="@color/black"
-                        />
-
-                    <TextView
-                        android:id="@+id/perdisaster_total_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:textSize="14sp"
-                        tools:text="Juan Mercado"
-                        android:textColor="@color/black"
-                        android:backgroundTint="@color/black"
-                        />
-                </LinearLayout>
-
-            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

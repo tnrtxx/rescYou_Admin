@@ -46,7 +46,7 @@ class PerSitioTotal : AppCompatActivity() {
         adapter = PerSitioAdapter(perSitioList)
         recyclerView.adapter = adapter
 
-        val gridLayoutManager = GridLayoutManager(this, 1)
+        val gridLayoutManager = GridLayoutManager(this, 2)
         this.recyclerView.layoutManager = gridLayoutManager
 
 

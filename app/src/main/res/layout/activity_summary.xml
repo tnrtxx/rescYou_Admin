@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Summary"
-    android:background="@color/white"
+    android:background="@color/light_gray"
 
     >
 
@@ -35,13 +35,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="14dp"
+                android:background="@color/navy_blue">
 
                 <ImageView
                     android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/back_button_2"
+                    android:src="@drawable/back_button_3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Summary"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -91,12 +93,16 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginBottom="16dp"
+                    android:backgroundTint="@color/white"
                     >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        >
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -111,17 +117,23 @@
                                 android:orientation="horizontal"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                >
 
 
                                 <TextView
-                                    android:id="@+id/name_textview"
+                                    android:id="@+id/summary_total_pins_textview"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
-                                    android:text="@string/all_pins" />
+                                    tools:text="@string/all_pins"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    />
 
 
                             </LinearLayout>
@@ -138,21 +150,17 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:orientation="horizontal">
-
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    >
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Total: "
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:id="@+id/summary_total_pins_textview"
+                                        android:id="@+id/name_textview"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="4dp"
-                                        android:textSize="14sp"
-                                        tools:text="Juan Mercado" />
+                                        android:text="@string/all_pins"
+                                        android:textSize="14sp" />
                                 </LinearLayout>
 
                             </RelativeLayout>
@@ -184,6 +192,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginBottom="24dp"
+                    android:backgroundTint="@color/white"
                     >
 
                     <LinearLayout
@@ -208,13 +217,16 @@
 
 
                                 <TextView
-                                    android:id="@+id/resolvedpins_name_textview"
+                                    android:id="@+id/resolvedpins_textview"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
-                                    android:text="@string/resolved_pins" />
+                                    tools:text="@string/resolved_pins"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    />
 
 
                             </LinearLayout>
@@ -227,25 +239,22 @@
                                 app:layout_constraintTop_toBottomOf="@+id/resolvedpins_linearlayout">
 
                                 <LinearLayout
-                                    android:id="@+id/resolvedpins_total_linearlayout"
+                                    android:id="@+id/resolvedpins_name_textview"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    >
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Total: "
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:id="@+id/resolvedpins_textview"
+                                        android:id="@+id/resolvedpins_total_linearlayout"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="4dp"
                                         android:textSize="14sp"
-                                        tools:text="Juan Mercado" />
+                                        android:text="@string/resolved_pins" />
                                 </LinearLayout>
 
                             </RelativeLayout>
@@ -277,6 +286,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginBottom="24dp"
+                    android:backgroundTint="@color/white"
                     >
 
                     <LinearLayout
@@ -301,13 +311,16 @@
 
 
                                 <TextView
-                                    android:id="@+id/sitio_name_textview"
+                                    android:id="@+id/sitio_textview"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
-                                    android:text="Most Vulnerable Sitio" />
+                                    tools:text="Most Vulnerable Sitio"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    />
 
 
                             </LinearLayout>
@@ -324,21 +337,23 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    >
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Sitio: "
-                                        android:textSize="14sp" />
+                                        android:id="@+id/sitio_name_textview"
 
-                                    <TextView
-                                        android:id="@+id/sitio_textview"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="4dp"
                                         android:textSize="14sp"
-                                        tools:text="Juan Mercado" />
+                                        android:text="Most Vulnerable Sitio"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+
+                                        />
                                 </LinearLayout>
 
                             </RelativeLayout>
@@ -370,6 +385,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginBottom="24dp"
+                    android:backgroundTint="@color/white"
                     >
 
                     <LinearLayout
@@ -394,13 +410,16 @@
 
 
                                 <TextView
-                                    android:id="@+id/disaster_type_textview"
+                                    android:id="@+id/disaster_type_name_textview"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:textSize="22sp"
                                     android:textStyle="bold"
-                                    android:text="Frequent Disaster Type" />
+                                    tools:text="Frequent Disaster Type"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    />
 
 
                             </LinearLayout>
@@ -417,21 +436,20 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="4dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Disaster Type: "
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:id="@+id/disaster_type_name_textview"
+                                        android:id="@+id/disaster_type_textview"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="4dp"
                                         android:textSize="14sp"
-                                        tools:text="Juan Mercado" />
+                                        android:text="Frequent Disaster Type"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        />
                                 </LinearLayout>
 
                             </RelativeLayout>

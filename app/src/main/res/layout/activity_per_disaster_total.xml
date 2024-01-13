@@ -24,13 +24,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="14dp"
+            android:background="@color/navy_blue">
 
             <ImageView
                 android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/back_button_2"
+                android:src="@drawable/back_button_3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/per_disaster"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
@@ -59,16 +61,18 @@
     <!-- Total Disaster -->
 
     <!--CONTENT-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/per_disaster_total_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:listitem="@layout/item_per_disaster_total" />
+        android:layout_marginTop="10dp"
+        tools:listitem="@layout/item_persitio"
+
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

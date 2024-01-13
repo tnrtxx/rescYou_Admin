@@ -24,9 +24,9 @@ class PerSitioAdapter(private val perSitioList: List<SitioDataClass>) : Recycler
         holder.persitioTotalTextView.text = sitioData.total.toString() // Assuming 'total' is a property in SitioDataClass
 
 
-        // Add bottom margin to the last item
+        // Add bottom margin to the last and second to last items
         val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
-        if (position == itemCount - 1) {
+        if (position == itemCount - 1 || position == itemCount - 2) {
             layoutParams.bottomMargin = holder.itemView.context.resources.getDimensionPixelSize(R.dimen.margin_bottom_last_item_smaller)
         } else {
             layoutParams.bottomMargin = 0

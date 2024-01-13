@@ -54,12 +54,13 @@
             <!--IMAGE-->
             <ImageView
                 android:id="@+id/perDisaster_image"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:padding="8dp"
                 android:layout_gravity="center"
                 android:src="@drawable/photo_icon"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:elevation="10dp"
+                />
 
             <!--CHOOSE AN IMAGE-->
             <android.widget.Button
